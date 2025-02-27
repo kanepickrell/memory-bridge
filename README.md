@@ -8,7 +8,7 @@
 # 🧠 Memory Bridge AI
 
 ## ** Project Overview**  
-Memory Bridge AI is an AI-powered memory reinforcement system designed to help individuals in **memory care facilities** strengthen recall and rediscover past memories. Unlike traditional chatbots, it **builds an evolving memory graph**, tracking relationships between people, places, and events, reinforcing **weaker memories**, and integrating **family-uploaded images for rediscovery**.
+Memory Bridge AI is an AI-powered memory reinforcement system designed to help individuals in care facilities strengthen recall and rediscover past memories. Unlike traditional chatbots, it builds an evolving memory graph, tracking relationships between people, places, and events, reinforcing weaker memories, and integrating family-uploaded images for rediscovery.
 
 ## ** Key Features**
  **Graph-Based Memory Storage** – AI creates a **network of linked memories**  
