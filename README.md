@@ -91,19 +91,19 @@ Claude’s suggestions helped us **align with existing Alzheimer’s research** 
 
 ## ** Hackathon Demo Plan**
  **Live Walkthrough:**  
-1️⃣ User **shares a memory** (*"I went to Paris with Lisa in 1998."*).  
-2️⃣ **Memory Graph updates** with nodes for **Lisa, Paris, and 1998**.  
-3️⃣ AI later **tests recall** → *"Who was with you on that trip?"*  
-4️⃣ **Family uploads a photo** → AI uses it for rediscovery.  
-5️⃣ **Graph visualization updates dynamically**, showing **stronger recall links**.  
+1 User **shares a memory** (*"I went to Paris with Lisa in 1998."*).  
+2 **Memory Graph updates** with nodes for **Lisa, Paris, and 1998**.  
+3 AI later **tests recall** → *"Who was with you on that trip?"*  
+4 **Family uploads a photo** → AI uses it for rediscovery.  
+5 **Graph visualization updates dynamically**, showing **stronger recall links**.  
 
 ---
 
 ## ** Why This Hackathon Plan Wins**
-✅ **MVP in 8 Hours:** Guarantees **a working demo** with a chatbot + memory graph.  
-✅ **24-Hour Enhancements:** Adds **scientific credibility** using **real therapeutic techniques**.  
-✅ **Emotional Connection:** Family uploads + music recall = **more engaging & human-centered**.  
-✅ **Visually Impactful:** Memory Graph + Image Prompts = **impressive for judges**.  
+ **MVP in 8 Hours:** Guarantees **a working demo** with a chatbot + memory graph.  
+ **24-Hour Enhancements:** Adds **scientific credibility** using **real therapeutic techniques**.  
+ **Emotional Connection:** Family uploads + music recall = **more engaging & human-centered**.  
+ **Visually Impactful:** Memory Graph + Image Prompts = **impressive for judges**.  
 
 ---
 
