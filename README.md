@@ -109,7 +109,6 @@ Modern memory therapy methods help us align with existing Alzheimer’s research
 
 ### **Next Steps**
 - **Confirm JSON vs. Neo4j for memory storage** (stick with JSON for MVP).  
-- **Define chatbot’s structured recall prompts** for CST-based memory exercises.  
+- **Define chatbot’s structured recall prompts** for CST-based memory exercises. 
 - **Finalize the UI for family uploads & visualization display.**  
 
-Let’s make this the most impactful hackathon project! 🚀
