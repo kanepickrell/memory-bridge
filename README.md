@@ -7,10 +7,10 @@
 
 # 🧠 Memory Bridge AI
 
-## ** Project Overview**  
+## **Project Overview**  
 Memory Bridge AI is an AI-powered memory reinforcement system designed to help individuals in care facilities strengthen recall and rediscover past memories. Unlike traditional chatbots, it builds an evolving memory graph, tracking relationships between people, places, and events, reinforcing weaker memories, and integrating family-uploaded images for rediscovery.
 
-## ** Key Features**
+## **Key Features**
  **Graph-Based Memory Storage** – AI creates a **network of linked memories**  
  **Conversational Memory Recall** – AI **remembers past interactions** and revisits memories for **reinforcement**  
  **Recall Strengthening & Testing** – AI uses **adaptive recall difficulty** (Recognition → Cued Recall → Free Recall)  
@@ -19,7 +19,7 @@ Memory Bridge AI is an AI-powered memory reinforcement system designed to help i
 
 ---
 
-## ** Tech Stack**
+## **Tech Stack**
 | **Component** | **Technology** |
 |--------------|--------------|
 | **Backend (Memory Storage & Retrieval)** | JSON (for MVP), NetworkX (graph model), Flask |
@@ -30,7 +30,7 @@ Memory Bridge AI is an AI-powered memory reinforcement system designed to help i
 
 ---
 
-## ** Team Roles & Responsibilities**
+## **Team Roles & Responsibilities**
 | **Team Member** | **Role** | **Tasks** |
 |--------------|--------------|--------------|
 | **AI Developer** | **Conversational AI & Memory Recall** | Implements chatbot logic, adaptive recall, connects AI with memory graph |
@@ -39,7 +39,7 @@ Memory Bridge AI is an AI-powered memory reinforcement system designed to help i
 
 ---
 
-## ** 8-Hour Plan: Get a Working MVP**
+## **8-Hour Plan: Get a Working MVP**
 This plan ensures a **basic working prototype** that can **store and retrieve memories, reinforce recall, and display a simple graph.**
 
 | **Time Block** | **Task** | **Who Works on It?** |
@@ -58,7 +58,7 @@ This plan ensures a **basic working prototype** that can **store and retrieve me
 
 ---
 
-## ** 24-Hour Plan: Full Scientific Version**
+## **24-Hour Plan: Full Scientific Version**
 After the **MVP is working**, we **enhance the project** with features backed by **modern Alzheimer's therapy research**.
 
 | **Time Block** | **Feature** | **Why It’s Important?** | **Who Works on It?** |
@@ -73,23 +73,23 @@ After the **MVP is working**, we **enhance the project** with features backed by
 
 ---
 
-## ** Scientific Enhancements in the 24-Hour Plan**
-Claude’s suggestions helped us **align with existing Alzheimer’s research** while keeping our innovation intact. Here’s how we integrate **proven therapy techniques** into our project:
+## **Scientific Enhancements in the 24-Hour Plan**
+Modern memory therapy methods help us align with existing Alzheimer’s research while keeping our innovation intact. Here’s how we integrate proven therapy techniques into our project:
 
-### ** 1. Cognitive Stimulation Therapy (CST) Features**
+### **1. Cognitive Stimulation Therapy (CST) Features**
 - AI **introduces theme-based memory exercises** (e.g., "Tell me about a childhood holiday").  
 - **Why It’s Important:** **Gives our project clinical credibility**.
 
-### ** 2. Music-Based Memory Recall (Music Therapy)**
+### **2. Music-Based Memory Recall (Music Therapy)**
 - **How We Implement It:** Allow family members to **tag memories with music**.  
 - **Why It’s Important:** **Scientifically backed as a powerful memory trigger**.  
 
-### ** 3. Confidence Tracking for Memory Integrity**
+### **3. Confidence Tracking for Memory Integrity**
 - **Prevents AI from reinforcing false memories** by **tracking recall confidence & flagging inconsistencies**.  
 
 ---
 
-## ** Hackathon Demo Plan**
+## **Hackathon Demo Plan**
  **Live Walkthrough:**  
 1 User **shares a memory** (*"I went to Paris with Lisa in 1998."*).  
 2 **Memory Graph updates** with nodes for **Lisa, Paris, and 1998**.  
@@ -107,7 +107,7 @@ Claude’s suggestions helped us **align with existing Alzheimer’s research** 
 
 ---
 
-### ** Next Steps**
+### **Next Steps**
 - **Confirm JSON vs. Neo4j for memory storage** (stick with JSON for MVP).  
 - **Define chatbot’s structured recall prompts** for CST-based memory exercises.  
 - **Finalize the UI for family uploads & visualization display.**  
