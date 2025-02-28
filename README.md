@@ -33,9 +33,9 @@ Memory Bridge AI is an AI-powered memory reinforcement system designed to help i
 ## **Team Roles & Responsibilities**
 | **Team Member** | **Role** | **Tasks** |
 |--------------|--------------|--------------|
-| **AI Developer** | **Conversational AI & Memory Recall** | Implements chatbot logic, adaptive recall, connects AI with memory graph |
-| **Data Scientist** | **Memory Graph & Visualization** | Creates and updates NetworkX-based memory graph, builds interactive visualization |
-| **Frontend Developer** | **Chat UI & Image Upload** | Develops chatbot interface, image upload portal, integrates visualization |
+| **vera or kane** | **Conversational AI & Memory Recall** | Implements chatbot logic, adaptive recall, connects AI with memory graph |
+| **EJ** | **Memory Graph & Visualization** | Creates and updates NetworkX-based memory graph, builds interactive visualization |
+| **vera or kane** | **Chat UI & Image Upload** | Develops chatbot interface, image upload portal, integrates visualization |
 
 ---
 
@@ -45,10 +45,10 @@ This plan ensures a **basic working prototype** that can **store and retrieve me
 | **Time Block** | **Task** | **Who Works on It?** |
 |--------------|----------------------------|----------------|
 | **Hour 1-2** | Set up project structure (Flask backend, chatbot API, JSON storage) | **All team members** |
-| **Hour 3-4** | Implement **basic memory graph storage (JSON/NetworkX)** | **Data Scientist** |
-| **Hour 3-4** | Develop **basic chatbot API** that references stored memories | **AI Developer** |
-| **Hour 5-6** | Create **Flask-based chat UI** for interacting with AI | **Frontend Developer** |
-| **Hour 6-7** | Implement **static memory visualization (Plotly/Matplotlib)** | **Data Scientist** |
+| **Hour 3-4** | Implement **basic memory graph storage (JSON/NetworkX)** | **EJ** |
+| **Hour 3-4** | Develop **basic chatbot API** that references stored memories | **kane/vera** |
+| **Hour 5-6** | Create **Flask-based chat UI** for interacting with AI | **kane/vera** |
+| **Hour 6-7** | Implement **static memory visualization (Plotly/Matplotlib)** | **EJ** |
 | **Hour 7-8** | **End-to-end testing & debugging** | **All team members** |
 
  **By Hour 8, We Can Demo:**  
