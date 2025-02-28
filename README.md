@@ -99,7 +99,7 @@ Modern memory therapy methods help us align with existing Alzheimer’s research
 
 ---
 
-## **Why This Hackathon Plan Wins**
+## **goals**
  **MVP in 8 Hours:** Guarantees **a working demo** with a chatbot + memory graph.  
  **24-Hour Enhancements:** Adds **scientific credibility** using **real therapeutic techniques**.  
  **Emotional Connection:** Family uploads + music recall = **more engaging & human-centered**.  
