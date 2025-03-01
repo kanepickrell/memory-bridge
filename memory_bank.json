@@ -1,62 +1,386 @@
 {
-    "people": [
+    "nodes": [
         {
-            "id": "p1",
-            "name": "John",
-            "relationship": "Friend",
-            "recall_strength": 1.0
+            "id": "1",
+            "name": "Grandpa Joe",
+            "type": "person"
         },
         {
-            "id": "p2",
+            "id": "2",
+            "name": "Grandma Jane",
+            "type": "person"
+        },
+        {
+            "id": "3",
             "name": "Lisa",
-            "relationship": "Friend",
-            "recall_strength": 1.0
-        }
-    ],
-    "events": [
-        {
-            "id": "e1",
-            "description": "Travelling to the Grand Canyon with John and Lisa",
-            "recall_strength": 1.0
+            "type": "person"
         },
         {
-            "id": "e2",
-            "description": "Flight to Pittsburgh with John and Lisa",
-            "recall_strength": 1.0
+            "id": "4",
+            "name": "Tim",
+            "type": "person"
         },
         {
-            "id": "e3",
-            "description": "Hiking in the Rockies with Lisa",
+            "id": "5",
+            "name": "Alex",
+            "type": "person"
+        },
+        {
+            "id": "6",
+            "name": "Megan",
+            "type": "person"
+        },
+        {
+            "id": "7",
+            "name": "I went to Vegas with Lisa and Joe in 1998",
+            "type": "memory",
+            "recall_strength": 0.7
+        },
+        {
+            "id": "8",
+            "name": "Lisa hosted Christmas Dinner two years ago",
+            "type": "memory",
             "recall_strength": 0.8
         },
         {
-            "id": "e4",
-            "description": "Trip to the Grand Canyon with Lisa in 1998",
+            "id": "9",
+            "name": "Lisa and I went to Paris",
+            "type": "memory",
+            "recall_strength": 0.9
+        },
+        {
+            "id": "10",
+            "name": "Paris, France",
+            "type": "location"
+        },
+        {
+            "id": "11",
+            "name": "Played basketball with Tim",
+            "type": "memory",
+            "tags": [
+                "sports",
+                "friends"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "12",
+            "name": "Whiskey Trail in Tennessee",
+            "type": "memory",
+            "tags": [
+                "travel",
+                "leisure"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "13",
+            "name": "Tennessee, USA",
+            "type": "location",
+            "recall_strength": 0.8
+        },
+        {
+            "id": "14",
+            "name": "Loved fishing with Grandpa",
+            "type": "memory",
+            "tags": [
+                "family",
+                "leisure",
+                "emotion"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "15",
+            "name": "I love to fish with Grandpa",
+            "type": "memory",
+            "tags": [
+                "leisure",
+                "family",
+                "emotion"
+            ],
+            "recall_strength": 1.0
+        },
+        {
+            "id": "16",
+            "name": "Caught a Blue Gill",
+            "type": "memory",
+            "tags": [
+                "fishing",
+                "activity"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "17",
+            "name": "Caught a Bass",
+            "type": "memory",
+            "tags": [
+                "fishing",
+                "activity"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "18",
+            "name": "I love making pies with Lisa",
+            "type": "memory",
+            "tags": [
+                "activity",
+                "friends",
+                "food"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "19",
+            "name": "Grandpa Joe's birthday party 2015",
+            "type": "memory",
+            "tags": [
+                "family",
+                "celebration"
+            ],
+            "recall_strength": 0.7
+        },
+        {
+            "id": "20",
+            "name": "Alex's graduation ceremony 2020",
+            "type": "memory",
+            "tags": [
+                "achievement",
+                "education"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "21",
+            "name": "Local Music Festival 2018",
+            "type": "memory",
+            "tags": [
+                "music",
+                "culture"
+            ],
+            "recall_strength": 0.85
+        },
+        {
+            "id": "22",
+            "name": "Coney Island",
+            "type": "location",
+            "recall_strength": 0.7
+        },
+        {
+            "id": "23",
+            "name": "Visited Coney Island with Alex",
+            "type": "memory",
+            "tags": [
+                "travel",
+                "friends"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "24",
+            "name": "Coffee with Tim",
+            "type": "memory",
+            "tags": [
+                "casual",
+                "friends"
+            ],
+            "recall_strength": 0.7
+        },
+        {
+            "id": "25",
+            "name": "Dinner at Lisa's",
+            "type": "memory",
+            "tags": [
+                "family",
+                "celebration"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "26",
+            "name": "New York City",
+            "type": "location",
+            "recall_strength": 0.9
+        },
+        {
+            "id": "27",
+            "name": "A summer road trip",
+            "type": "memory",
+            "tags": [
+                "travel",
+                "adventure"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "28",
+            "name": "Road trip across the USA",
+            "type": "memory",
+            "tags": [
+                "travel",
+                "adventure"
+            ],
+            "recall_strength": 0.85
+        },
+        {
+            "id": "29",
+            "name": "Beach Party 2019",
+            "type": "memory",
+            "tags": [
+                "beach",
+                "fun",
+                "summer"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "30",
+            "name": "Met Megan at a tech conference",
+            "type": "memory",
+            "tags": [
+                "professional",
+                "networking"
+            ],
             "recall_strength": 0.9
         }
     ],
-    "locations": [
+    "links": [
         {
-            "id": "l1",
-            "name": "Grand Canyon",
-            "recall_strength": 1.0
+            "source": "1",
+            "target": "7",
+            "strength": 5
         },
         {
-            "id": "l2",
-            "name": "Pittsburgh",
-            "recall_strength": 1.0
+            "source": "3",
+            "target": "7",
+            "strength": 2
         },
         {
-            "id": "l3",
-            "name": "Rockies",
-            "recall_strength": 0.8
-        }
-    ],
-    "connections": [
+            "source": "3",
+            "target": "8",
+            "strength": 10
+        },
         {
-            "source": "p1",
-            "target": "e1",
-            "recall_strength": 1.0
+            "source": "3",
+            "target": "9",
+            "strength": 8
+        },
+        {
+            "source": "9",
+            "target": "10",
+            "strength": 8
+        },
+        {
+            "source": "4",
+            "target": "11",
+            "strength": 0.9
+        },
+        {
+            "source": "12",
+            "target": "13",
+            "strength": 0.8
+        },
+        {
+            "source": "1",
+            "target": "14",
+            "strength": 1.0
+        },
+        {
+            "source": "1",
+            "target": "15",
+            "strength": 1.0
+        },
+        {
+            "source": "15",
+            "target": "16",
+            "strength": 0.8
+        },
+        {
+            "source": "15",
+            "target": "17",
+            "strength": 0.8
+        },
+        {
+            "source": "3",
+            "target": "18",
+            "strength": 0.9
+        },
+        {
+            "source": "1",
+            "target": "19",
+            "strength": 0.7
+        },
+        {
+            "source": "5",
+            "target": "20",
+            "strength": 0.9
+        },
+        {
+            "source": "5",
+            "target": "21",
+            "strength": 0.85
+        },
+        {
+            "source": "22",
+            "target": "23",
+            "strength": 0.8
+        },
+        {
+            "source": "4",
+            "target": "24",
+            "strength": 0.7
+        },
+        {
+            "source": "3",
+            "target": "25",
+            "strength": 0.8
+        },
+        {
+            "source": "12",
+            "target": "27",
+            "strength": 0.9
+        },
+        {
+            "source": "27",
+            "target": "28",
+            "strength": 0.85
+        },
+        {
+            "source": "23",
+            "target": "26",
+            "strength": 0.9
+        },
+        {
+            "source": "6",
+            "target": "30",
+            "strength": 0.9
+        },
+        {
+            "source": "5",
+            "target": "23",
+            "strength": 0.8
+        },
+        {
+            "source": "29",
+            "target": "26",
+            "strength": 0.8
+        },
+        {
+            "source": "29",
+            "target": "27",
+            "strength": 0.7
+        },
+        {
+            "source": "2",
+            "target": "7",
+            "strength": 4
+        },
+        {
+            "source": "2",
+            "target": "19",
+            "strength": 0.7
         }
     ]
 }
