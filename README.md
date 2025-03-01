@@ -4,6 +4,10 @@
   <img src="https://github.com/user-attachments/assets/fe4f75ef-d8ca-4456-8202-6167dd3ae9e1" alt="Description" width="300">
 </p>
 
+<p align="center">
+  <img src="map.PNG" alt="Description" width="300">
+</p>
+
 
 # 🧠 Memory Bridge AI
 
