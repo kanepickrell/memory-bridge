@@ -5,7 +5,6 @@
 </p>
 
 
-https://github.com/user-attachments/assets/1ac0c7b5-cd00-43e9-aceb-86c32dd90d4a
 # 🧠 Memory Bridge AI
 
 ## **Project Overview**  
