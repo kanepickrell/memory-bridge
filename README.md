@@ -4,6 +4,8 @@
   <img src="https://github.com/user-attachments/assets/fe4f75ef-d8ca-4456-8202-6167dd3ae9e1" alt="Description" width="300">
 </p>
 
+
+https://github.com/user-attachments/assets/1ac0c7b5-cd00-43e9-aceb-86c32dd90d4a
 # 🧠 Memory Bridge AI
 
 ## **Project Overview**  
