@@ -28,7 +28,6 @@ def load_memory():
 # Load memory at script start
 memory_bank = load_memory()
 
-
 def store_memory(new_memory):
     """
     Update the existing graph data JSON file with new memory nodes and links.
@@ -243,6 +242,16 @@ agent_t = Agent(
     """,
 )
 
+agent_v = Agent(
+    name="Validation Agent",
+    instructions="""
+    You are a validation agent. Your task is to determine if the patient’s response affirms the memory prompt provided by the Memory Prompt Agent.
+    Analyze the provided memory prompt and the patient’s response. 
+    Respond with "Affirmed" if the response confirms or relates to the memory prompt, or "Not Affirmed" if it does not.
+    """
+)
+
+
 negative_count = 0
 confused_count = 0
 normal_count = 0
@@ -250,19 +259,14 @@ conversational_flag = False
 
 while True:
     user_input = input("Enter a statement (or type 'exit' to quit): ")
-    # relevant_memories = memorymap.get_highest_recall_memories()
-    # selected_memory = next((m for m in relevant_memories if m.name.lower() in user_input.lower()), None)
     selected_memory = memorymap.get_highest_recall_memories()
     print(selected_memory)
+    selected_memory_text = ", ".join([m[1] for m in selected_memory]) if selected_memory else "No memory found"
+    print(selected_memory_text) 
 
     if user_input.lower() == "exit":
         print("Exiting...")
         break
-
-    # response_x = client.run(
-    # agent=agent_x,
-    # messages=[{"role": "user", "content": "its currently 3 o clock."}]
-    # )
 
     # Run Agent S
     print("Running steering agent...")
@@ -270,8 +274,6 @@ while True:
         agent=agent_s,
         messages=[{"role": "user", "content": user_input}]
     )
-
-    # print(response_x.messages[-1]["content"])
 
     # Extract content from Agent S's response
     if response_s:
@@ -292,27 +294,43 @@ while True:
                 except json.JSONDecodeError:
                     print("Invalid JSON from Agent P.")
 
-            # if selected_memory:
-            #     memory_prompt = f"Previously you talked about '{selected_memory}'. Can you tell me more about that?"
-            # else:
-            #     memory_prompt = "Let's think about something enjoyable from your past. What comes to mind?"
-
+            # After running Agent M:
             print("Running Memory Agent...")
             response_m = client.run(
                 agent=agent_m, 
                 messages=[
-                {"role": "user", "content": f"{user_input}"},
-                {"role": "system", "content": f"Selected memory: {selected_memory}"}
-            ])
+                    {"role": "user", "content": user_input},
+                    {"role": "system", "content": f"Selected memory: {selected_memory_text}"}
+                ]
+            )
 
             if response_m and response_m.messages:
-                print(f"Memory Agent Response: {response_m.messages[-1]['content']}")
+                memory_prompt_output = response_m.messages[-1]['content']
+                print(f"Memory Agent Response: {memory_prompt_output}")
+                
+                # Ask the user for a follow-up response regarding the memory prompt.
+                validation_input = input("Enter a statement: ")
+                
+                print("Running Validation Agent...")
+                response_v = client.run(
+                    agent=agent_v,
+                    messages=[
+                        {"role": "system", "content": f"Memory prompt: {memory_prompt_output}"},
+                        {"role": "user", "content": validation_input},
+                        
+                    ],
+                )
+                
+                if response_v and response_v.messages:
+                    validation_result = response_v.messages[-1]['content']
+                    print(f"Validation Agent Response: {validation_result}")
+                    if validation_result == "Affirmed":
+                        memorymap.increase_recall(selected_memory[0].id)
+                else:
+                    print("Validation Agent did not respond.")
             else:
                 print("Memory Agent did not respond.")
 
-
-
-            # validation agent
         
         # If Agent S classifies it as a topical, trigger Agent 
         if classification.strip().lower() == "topical":

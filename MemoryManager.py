@@ -46,9 +46,21 @@ class MemoryAccess:
     def get_highest_recall_memories(self, top_n=2):
         sorted_nodes = sorted(self.nodes, key=lambda node: node.recall_strength, reverse=True)
         return sorted_nodes[:top_n]
+    
+    def increase_recall(self, node_id):
+        for idx, node in enumerate(self.nodes):
+            if node.id == node_id:
+                # Increase recall_strength by 0.1, ensuring it doesn't exceed 1.0
+                new_strength = min(node.recall_strength + 0.1, 1.0)
+                # Create a new Node with the updated recall_strength
+                self.nodes[idx] = node._replace(recall_strength=new_strength)
+                print(f"Updated node {node_id}: recall_strength from {node.recall_strength} to {new_strength}")
+                break
+        else:
+            print(f"Node with id {node_id} not found.")
 
 if __name__ == "__main__":
-    json_filename = "C:/repos/memory-bridge/frontend/src/data.json"  # Replace with actual path
+    json_filename = "C:/repos/memory-bridge/frontend/src/data.json" 
     memory_map = MemoryAccess(json_filename)
 
     top_memories = memory_map.get_highest_recall_memories()
