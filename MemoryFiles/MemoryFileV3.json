@@ -1,0 +1,142 @@
+{
+  "people": [
+    {
+      "id": "p1",
+      "name": "John Doe",
+      "age": 35,
+      "relationship": "Friend",
+      "description": "A long-time friend from college who enjoys hiking and photography.",
+      "tags": ["friend", "college", "hiking", "photography"],
+      "recall_strength": 0.85
+    },
+    {
+      "id": "p2",
+      "name": "Jane Smith",
+      "age": 29,
+      "relationship": "Sister",
+      "description": "Younger sister who works as a software engineer.",
+      "tags": ["family", "sister", "tech"],
+      "recall_strength": 0.92
+    },
+    {
+      "id": "p3",
+      "name": "Michael Johnson",
+      "age": 40,
+      "relationship": "Colleague",
+      "description": "Work colleague who specializes in data science.",
+      "tags": ["work", "colleague", "data science"],
+      "recall_strength": 0.76
+    },
+    {
+      "id": "p4",
+      "name": "Emily Davis",
+      "age": 27,
+      "relationship": "Best Friend",
+      "description": "Best friend from childhood who loves traveling.",
+      "tags": ["friend", "childhood", "travel"],
+      "recall_strength": 0.89
+    },
+    {
+      "id": "p5",
+      "name": "Robert Brown",
+      "age": 50,
+      "relationship": "Mentor",
+      "description": "A wise mentor who has guided me throughout my career.",
+      "tags": ["mentor", "career", "advice"],
+      "recall_strength": 0.95
+    },
+    {
+      "id": "p6",
+      "name": "Lisa White",
+      "age": 33,
+      "relationship": "Cousin",
+      "description": "Fun-loving cousin who enjoys road trips and outdoor adventures.",
+      "tags": ["family", "cousin", "travel", "adventure"],
+      "recall_strength": 0.88
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "date": "2023-07-15",
+      "related_people": [["p1", 0.9], ["p2", 0.8]],
+      "description": "A hiking trip to the Grand Canyon with John and Jane.",
+      "tags": ["hiking", "trip", "adventure"],
+      "related_places": [["l1", 1.0]],
+      "recall_strength": 0.78
+    },
+    {
+      "id": "e2",
+      "date": "2022-12-25",
+      "related_people": [["p2", 1.0]],
+      "description": "Christmas celebration at Jane's place.",
+      "tags": ["holiday", "family", "Christmas"],
+      "related_places": [["l2", 1.0]],
+      "recall_strength": 0.88
+    },
+    {
+      "id": "e3",
+      "date": "2024-01-10",
+      "related_people": [["p3", 0.7]],
+      "description": "Attended a data science conference with Michael.",
+      "tags": ["conference", "work", "data science"],
+      "related_places": [["l3", 0.9]],
+      "recall_strength": 0.74
+    },
+    {
+      "id": "e4",
+      "date": "2023-05-20",
+      "related_people": [["p4", 0.95]],
+      "description": "Vacation trip to Bali with Emily.",
+      "tags": ["vacation", "travel", "Bali"],
+      "related_places": [["l4", 1.0]],
+      "recall_strength": 0.82
+    },
+    {
+      "id": "e5",
+      "date": "2021-11-03",
+      "related_people": [["p5", 1.0]],
+      "description": "Career advice session with my mentor Robert.",
+      "tags": ["career", "advice", "mentor"],
+      "related_places": [["l5", 0.9]],
+      "recall_strength": 0.91
+    }
+  ],
+  "locations": [
+    {
+      "id": "l1",
+      "name": "Grand Canyon",
+      "address": "Arizona, USA",
+      "description": "A breathtaking natural wonder known for its stunning views and hiking trails.",
+      "recall_strength": 0.95
+    },
+    {
+      "id": "l2",
+      "name": "Jane's Apartment",
+      "address": "123 Main St, New York, NY",
+      "description": "Jane's cozy apartment where she hosted Christmas dinner.",
+      "recall_strength": 0.81
+    },
+    {
+      "id": "l3",
+      "name": "Tech Conference Center",
+      "address": "456 Innovation Blvd, San Francisco, CA",
+      "description": "A modern venue for technology and business conferences.",
+      "recall_strength": 0.88
+    },
+    {
+      "id": "l4",
+      "name": "Bali Beach Resort",
+      "address": "Bali, Indonesia",
+      "description": "A luxurious beachside resort with breathtaking ocean views.",
+      "recall_strength": 0.93
+    },
+    {
+      "id": "l5",
+      "name": "Coffee House",
+      "address": "789 Mentor Ave, Seattle, WA",
+      "description": "A quiet café where I often meet Robert for career discussions.",
+      "recall_strength": 0.89
+    }
+  ]
+}
