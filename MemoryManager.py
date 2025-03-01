@@ -93,13 +93,6 @@ if __name__ == "__main__":
     json_filename = "MemoryFiles/MemoryFileV2.json"  # Replace with the actual JSON filename
     memory_map = MemoryAccess(json_filename)
 
-    print("People:", memory_map.get_people())
-    print("Events:", memory_map.get_events())
-    print("Locations:", memory_map.get_locations())
-
-
-
-
     query = "John"
     print("Fuzzy search people:", memory_map.fuzzy_search_people(query))
     query = "Canyon"
