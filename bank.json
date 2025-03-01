@@ -1,0 +1,33 @@
+{
+    "people": [],
+    "events": [
+        {
+            "id": "e4",
+            "date": "1998-07-15",
+            "related_people": [],
+            "description": "A trip to Paris where the weather was notably hot.",
+            "tags": [
+                "Paris",
+                "trip",
+                "1998",
+                "weather"
+            ],
+            "related_places": [
+                [
+                    "l2",
+                    0.9
+                ]
+            ],
+            "recall_strength": 0.75
+        }
+    ],
+    "locations": [
+        {
+            "id": "l2",
+            "name": "Paris",
+            "address": "Paris, France",
+            "description": "The capital city of France, known for its art, fashion, and culture.",
+            "recall_strength": 0.85
+        }
+    ]
+}

@@ -1,101 +1,58 @@
 import json
 from pprint import pprint
 from collections import namedtuple
-from fuzzywuzzy import fuzz
 
-# Define namedtuples
-Person = namedtuple("Person", ["id", "name", "age", "relationship", "description", "tags", "recall_strength"])
-Event = namedtuple("Event",["id", "date", "related_people", "description", "tags", "related_places", "recall_strength"])
-Location = namedtuple("Location", ["id", "name", "address", "description", "recall_strength"])
-
+Node = namedtuple(
+    "Node",
+    ["id", "name", "type", "tags", "recall_strength"],
+    defaults=[[], 0.5]
+)
+Link = namedtuple("Link", ["source", "target", "strength"])
 
 class MemoryAccess:
     def __init__(self, filename):
         self.filename = filename
-        self.people = []
-        self.events = []
-        self.locations = []
+        self.nodes = []
+        self.links = []
         self.load_data()
 
     def load_data(self):
-        with open(self.filename, "r") as file:
+        with open(self.filename, "r", encoding='utf-8') as file:
             data = json.load(file)
 
-        self.people = [Person(**person) for person in data.get("people", [])]
-        self.events = [Event(**event) for event in data.get("events", [])]
-        self.locations = [Location(**location) for location in data.get("locations", [])]
+        self.nodes = [
+            Node(
+                **{
+                    "id": node["id"],
+                    "name": node["name"],
+                    "type": node["type"],
+                    "tags": node.get("tags", []),
+                    "recall_strength": node.get("recall_strength", 0.5)
+                }
+            )
+            for node in data.get("nodes", [])
+        ]
 
-    def get_people(self):
-        return self.people
+        self.links = [Link(**link) for link in data.get("links", [])]
 
-    def get_events(self):
-        return self.events
+    def save_data(self):
+        data = {
+            "nodes": [node._asdict() for node in self.nodes],
+            "links": [link._asdict() for link in self.links]
+        }
+        with open(self.filename, "w", encoding='utf-8') as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
 
-    def get_locations(self):
-        return self.locations
-
-    def update_recall_strength(self, element_id, increment=0.1):
-        self.people = [p._replace(recall_strength=min(1.0, p.recall_strength + increment)) if p.id == element_id else p for p in self.people]
-        self.events = [e._replace(recall_strength=min(1.0, e.recall_strength + increment)) if e.id == element_id else e for e in self.events]
-        self.locations = [l._replace(recall_strength=min(1.0, l.recall_strength + increment)) if l.id == element_id else l for l in self.locations]
-
-    def add_person(self, id, name, age, relationship, description, tags, recall_strength=0.5):
-        self.people.append(Person(id, name, age, relationship, description, tags, recall_strength))
-
-    def add_event(self, id, date, related_people, description, tags, related_places, recall_strength=0.5):
-        for person_id, _ in related_people:
-            self.update_recall_strength(person_id)
-        for location_id, _ in related_places:
-            self.update_recall_strength(location_id)
-        self.events.append(Event(id, date, related_people, description, tags, related_places, recall_strength))
-
-    def add_location(self, id, name, address, description, recall_strength=0.5):
-        self.locations.append(Location(id, name, address, description, recall_strength))
-
-    def fuzzy_search_people(self, query, threshold=80):
-        return [person for person in self.people if fuzz.partial_ratio(query.lower(), person.name.lower()) >= threshold]
-
-    def fuzzy_search_events(self, query, threshold=80):
-        return [event for event in self.events if fuzz.partial_ratio(query.lower(), event.description.lower()) >= threshold]
-
-    def fuzzy_search_locations(self, query, threshold=80):
-        return [location for location in self.locations if fuzz.partial_ratio(query.lower(), location.name.lower()) >= threshold]
-
-    def update_recall_strength_dynamic(self, element_id, user_input, alpha=0.5):
-        """ Updates recall strength based on similarity between user input and element descriptions. """
-
-        def compute_new_strength(current_strength, match_score):
-            increment = (match_score / 100) * (1 - current_strength) * alpha
-            return min(1.0, current_strength + increment)
-
-        for i, p in enumerate(self.people):
-            if p.id == element_id:
-                match_score = fuzz.partial_ratio(user_input.lower(), p.description.lower())
-                new_strength = compute_new_strength(p.recall_strength, match_score)
-                self.people[i] = p._replace(recall_strength=new_strength)
-
-        for i, e in enumerate(self.events):
-            if e.id == element_id:
-                match_score = fuzz.partial_ratio(user_input.lower(), e.description.lower())
-                new_strength = compute_new_strength(e.recall_strength, match_score)
-                self.events[i] = e._replace(recall_strength=new_strength)
-
-        for i, l in enumerate(self.locations):
-            if l.id == element_id:
-                match_score = fuzz.partial_ratio(user_input.lower(), l.description.lower())
-                new_strength = compute_new_strength(l.recall_strength, match_score)
-                self.locations[i] = l._replace(recall_strength=new_strength)
-
-        self.save_data()
-
+    def get_highest_recall_memories(self, top_n=2):
+        sorted_nodes = sorted(self.nodes, key=lambda node: node.recall_strength, reverse=True)
+        return sorted_nodes[:top_n]
 
 if __name__ == "__main__":
-    json_filename = "MemoryFiles/MemoryFileV2.json"  # Replace with the actual JSON filename
+    json_filename = "C:/repos/memory-bridge/frontend/src/data.json"  # Replace with actual path
     memory_map = MemoryAccess(json_filename)
 
-    query = "John"
-    print("Fuzzy search people:", memory_map.fuzzy_search_people(query))
-    query = "Canyon"
-    print("Fuzzy search events:", memory_map.fuzzy_search_events(query))
-    query = "Canion"
-    print("Fuzzy search locations:", memory_map.fuzzy_search_locations(query))
+    top_memories = memory_map.get_highest_recall_memories()
+
+    print("Top memory(ies) based on recall strength:")
+    for memory in top_memories:
+        pprint(memory._asdict())
