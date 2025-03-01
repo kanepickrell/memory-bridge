@@ -1,0 +1,200 @@
+{
+    "nodes": [
+        {
+            "id": "1",
+            "name": "Grandpa Joe",
+            "type": "person"
+        },
+        {
+            "id": "2",
+            "name": "I went to Vegas with Lisa and Joe in 1998",
+            "type": "memory"
+        },
+        {
+            "id": "3",
+            "name": "Lisa",
+            "type": "person"
+        },
+        {
+            "id": "4",
+            "name": "Lisa hosted Christmas Dinner two years ago",
+            "type": "memory"
+        },
+        {
+            "id": "5",
+            "name": "Lisa and I went to Paris",
+            "type": "memory"
+        },
+        {
+            "id": "6",
+            "name": "Paris, France",
+            "type": "location"
+        },
+        {
+            "id": "7",
+            "name": "Joe and I went apple picking",
+            "type": "memory"
+        },
+        {
+            "id": "8",
+            "name": "Played basketball with Tim",
+            "type": "memory",
+            "tags": [
+                "sports",
+                "friends"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "9",
+            "name": "Tim",
+            "type": "person",
+            "relationship": "Friend",
+            "recall_strength": 0.8
+        },
+        {
+            "id": "10",
+            "name": "Whiskey Trail in Tennessee",
+            "type": "memory",
+            "tags": [
+                "travel",
+                "leisure"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "11",
+            "name": "Tennessee, USA",
+            "type": "location",
+            "recall_strength": 0.8
+        },
+        {
+            "id": "12",
+            "name": "Lisa and I go apple picking every fall",
+            "type": "memory",
+            "tags": [
+                "activity",
+                "seasonal"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "13",
+            "name": "Grandpa Joe won a fishing contest in 2012",
+            "type": "memory",
+            "tags": [
+                "achievement",
+                "family"
+            ],
+            "recall_strength": 0.8
+        },
+        {
+            "id": "14",
+            "name": "Lisa and I go ice skating every winter",
+            "type": "memory",
+            "tags": [
+                "activity",
+                "seasonal"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "15",
+            "name": "Fishing with Grandpa Joe",
+            "type": "memory",
+            "tags": [
+                "leisure",
+                "family"
+            ],
+            "recall_strength": 0.9
+        },
+        {
+            "id": "16",
+            "name": "Loved fishing with Grandpa",
+            "type": "memory",
+            "tags": [
+                "family",
+                "leisure",
+                "emotion"
+            ],
+            "recall_strength": 1.0
+        }
+    ],
+    "links": [
+        {
+            "source": "1",
+            "target": "2",
+            "strength": 5
+        },
+        {
+            "source": "3",
+            "target": "2",
+            "strength": 2
+        },
+        {
+            "source": "3",
+            "target": "4",
+            "strength": 10
+        },
+        {
+            "source": "3",
+            "target": "5",
+            "strength": 8
+        },
+        {
+            "source": "5",
+            "target": "6",
+            "strength": 8
+        },
+        {
+            "source": "1",
+            "target": "7",
+            "strength": 3
+        },
+        {
+            "source": "7",
+            "target": "8",
+            "strength": 0.7
+        },
+        {
+            "source": "9",
+            "target": "8",
+            "strength": 0.8
+        },
+        {
+            "source": "10",
+            "target": "9",
+            "strength": 0.8
+        },
+        {
+            "source": "10",
+            "target": "11",
+            "strength": 0.8
+        },
+        {
+            "source": "3",
+            "target": "12",
+            "strength": 9
+        },
+        {
+            "source": "1",
+            "target": "13",
+            "strength": 0.8
+        },
+        {
+            "source": "3",
+            "target": "14",
+            "strength": 9
+        },
+        {
+            "source": "1",
+            "target": "15",
+            "strength": 0.9
+        },
+        {
+            "source": "1",
+            "target": "16",
+            "strength": 1.0
+        }
+    ]
+}

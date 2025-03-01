@@ -1,0 +1,62 @@
+{
+    "people": [
+        {
+            "id": "p1",
+            "name": "John",
+            "relationship": "Friend",
+            "recall_strength": 1.0
+        },
+        {
+            "id": "p2",
+            "name": "Lisa",
+            "relationship": "Friend",
+            "recall_strength": 1.0
+        }
+    ],
+    "events": [
+        {
+            "id": "e1",
+            "description": "Travelling to the Grand Canyon with John and Lisa",
+            "recall_strength": 1.0
+        },
+        {
+            "id": "e2",
+            "description": "Flight to Pittsburgh with John and Lisa",
+            "recall_strength": 1.0
+        },
+        {
+            "id": "e3",
+            "description": "Hiking in the Rockies with Lisa",
+            "recall_strength": 0.8
+        },
+        {
+            "id": "e4",
+            "description": "Trip to the Grand Canyon with Lisa in 1998",
+            "recall_strength": 0.9
+        }
+    ],
+    "locations": [
+        {
+            "id": "l1",
+            "name": "Grand Canyon",
+            "recall_strength": 1.0
+        },
+        {
+            "id": "l2",
+            "name": "Pittsburgh",
+            "recall_strength": 1.0
+        },
+        {
+            "id": "l3",
+            "name": "Rockies",
+            "recall_strength": 0.8
+        }
+    ],
+    "connections": [
+        {
+            "source": "p1",
+            "target": "e1",
+            "recall_strength": 1.0
+        }
+    ]
+}
