@@ -34,13 +34,29 @@ class MemoryAccess:
     def get_locations(self):
         return self.locations
 
+    def update_recall_strength(self, element_id, increment=0.1):
+        self.people = [p._replace(recall_strength=min(1.0, p.recall_strength + increment)) if p.id == element_id else p for p in self.people]
+        self.events = [e._replace(recall_strength=min(1.0, e.recall_strength + increment)) if e.id == element_id else e for e in self.events]
+        self.locations = [l._replace(recall_strength=min(1.0, l.recall_strength + increment)) if l.id == element_id else l for l in self.locations]
+
+    def add_person(self, id, name, age, relationship, description, tags, recall_strength=0.5):
+        self.people.append(Person(id, name, age, relationship, description, tags, recall_strength))
+
+    def add_event(self, id, date, related_people, description, tags, related_places, recall_strength=0.5):
+        for person_id, _ in related_people:
+            self.update_recall_strength(person_id)
+        for location_id, _ in related_places:
+            self.update_recall_strength(location_id)
+        self.events.append(Event(id, date, related_people, description, tags, related_places, recall_strength))
+
+    def add_location(self, id, name, address, description, recall_strength=0.5):
+        self.locations.append(Location(id, name, address, description, recall_strength))
+
     def fuzzy_search_people(self, query, threshold=80):
         return [person for person in self.people if fuzz.partial_ratio(query.lower(), person.name.lower()) >= threshold]
 
-
     def fuzzy_search_events(self, query, threshold=80):
         return [event for event in self.events if fuzz.partial_ratio(query.lower(), event.description.lower()) >= threshold]
-
 
     def fuzzy_search_locations(self, query, threshold=80):
         return [location for location in self.locations if fuzz.partial_ratio(query.lower(), location.name.lower()) >= threshold]
