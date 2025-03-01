@@ -61,6 +61,33 @@ class MemoryAccess:
     def fuzzy_search_locations(self, query, threshold=80):
         return [location for location in self.locations if fuzz.partial_ratio(query.lower(), location.name.lower()) >= threshold]
 
+    def update_recall_strength_dynamic(self, element_id, user_input, alpha=0.5):
+        """ Updates recall strength based on similarity between user input and element descriptions. """
+
+        def compute_new_strength(current_strength, match_score):
+            increment = (match_score / 100) * (1 - current_strength) * alpha
+            return min(1.0, current_strength + increment)
+
+        for i, p in enumerate(self.people):
+            if p.id == element_id:
+                match_score = fuzz.partial_ratio(user_input.lower(), p.description.lower())
+                new_strength = compute_new_strength(p.recall_strength, match_score)
+                self.people[i] = p._replace(recall_strength=new_strength)
+
+        for i, e in enumerate(self.events):
+            if e.id == element_id:
+                match_score = fuzz.partial_ratio(user_input.lower(), e.description.lower())
+                new_strength = compute_new_strength(e.recall_strength, match_score)
+                self.events[i] = e._replace(recall_strength=new_strength)
+
+        for i, l in enumerate(self.locations):
+            if l.id == element_id:
+                match_score = fuzz.partial_ratio(user_input.lower(), l.description.lower())
+                new_strength = compute_new_strength(l.recall_strength, match_score)
+                self.locations[i] = l._replace(recall_strength=new_strength)
+
+        self.save_data()
+
 
 if __name__ == "__main__":
     json_filename = "MemoryFiles/MemoryFileV2.json"  # Replace with the actual JSON filename
