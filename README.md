@@ -101,18 +101,4 @@ Memory Bridge integrates **three evidence-based therapies**—Reminiscence Thera
 
 ---
 
-## Future Directions & Next Steps
-- **Pilot & User Testing**  
-  - Run a small trial with 5–10 users/families, gather feedback on usability and perceived cognitive benefits.
-- **Scalability & Integration**  
-  - Explore **partnerships** with aging-in-place providers (e.g., The Helper Bees) to embed Memory Bridge into existing care platforms.
-- **Advanced Personalization**  
-  - Integrate **machine learning** to tailor therapy modules (e.g., SRT intervals, CST difficulty) based on user performance metrics.
-- **Compliance & Security**  
-  - Roadmap for HIPAA/HITRUST compliance if the platform becomes a clinical adjunct.
-- **Long-Term Clinical Validation**  
-  - Potentially collaborate with researchers to publish outcome data on memory recall, caregiver burden, and user quality of life.
-
----
-
 **Memory Bridge AI** aspires to **improve daily life** for individuals with dementia or related conditions by **combining proven memory therapies** with **modern AI** and **data tracking**. Through personalized, adaptive engagement and robust caregiver support tools, we aim to **surpass traditional methods** and enable higher-quality, research-backed memory care in any setting.
