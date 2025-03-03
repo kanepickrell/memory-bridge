@@ -11,108 +11,108 @@
 
 # 🧠 Memory Bridge AI
 
-## **Project Overview**  
-Memory Bridge AI is an AI-powered memory reinforcement system designed to help individuals in care facilities strengthen recall and rediscover past memories. Unlike traditional chatbots, it builds an evolving memory graph, tracking relationships between people, places, and events, reinforcing weaker memories, and integrating family-uploaded images for rediscovery.
+## Project Overview
+Memory Bridge AI is an AI-powered memory reinforcement system designed to help individuals in care facilities strengthen recall and rediscover past memories. Unlike traditional chatbots, it builds an evolving memory graph that tracks relationships between people, places, and events, reinforcing weaker memories and integrating family-uploaded images for rediscovery.
 
-## **Key Features**
- **Graph-Based Memory Storage** – AI creates a **network of linked memories**  
- **Conversational Memory Recall** – AI **remembers past interactions** and revisits memories for **reinforcement**  
- **Recall Strengthening & Testing** – AI uses **adaptive recall difficulty** (Recognition → Cued Recall → Free Recall)  
- **Image Upload & Rediscoverable Memories** – Family members upload photos, and AI **uses them as recall prompts**  
- **Memory Graph Visualization** – The graph **dynamically updates in real-time** to show how memories connect  
-
----
-
-## **Tech Stack**
-| **Component** | **Technology** |
-|--------------|--------------|
-| **Backend (Memory Storage & Retrieval)** | JSON (for MVP), NetworkX (graph model), Flask |
-| **Conversational AI** | OpenAI GPT-4 API (or Mistral-7B), LangChain |
-| **Recall Reinforcement** | AI uses **adaptive recall logic** based on user responses |
-| **Frontend (UI & Graph Visualization)** | Flask (chat UI), Plotly Dash (interactive graph) |
-| **Image Upload & Retrieval** | Flask file handling, stored image metadata in JSON |
+## Key Features
+- **Graph-Based Memory Storage**  
+  Creates a **network of linked memories** to visualize and strengthen connections.
+- **Conversational Memory Recall**  
+  AI **remembers past interactions** and revisits them for **reinforcement**.
+- **Adaptive Recall & Testing**  
+  Utilizes **incremental difficulty** (Recognition → Cued Recall → Free Recall), informed by modern memory therapies.
+- **Image Upload & Rediscovery**  
+  Family members upload photos, which the AI **uses as personalized memory prompts**.
+- **Memory Graph Visualization**  
+  The system **dynamically updates in real-time** to show how memories connect and evolve.
 
 ---
 
-## **Team Roles & Responsibilities**
-| **Team Member** | **Role** | **Tasks** |
-|--------------|--------------|--------------|
-| **vera or kane** | **Conversational AI & Memory Recall** | Implements chatbot logic, adaptive recall, connects AI with memory graph |
-| **EJ** | **Memory Graph & Visualization** | Creates and updates NetworkX-based memory graph, builds interactive visualization |
-| **vera or kane** | **Chat UI & Image Upload** | Develops chatbot interface, image upload portal, integrates visualization |
+## Technical Goals & MVP Features
+
+### 1. Research-Backed Memory Therapy Integration
+- **Reminiscence Therapy (RT)**  
+  - Facilitates uploading personal photos/stories, prompting guided reminiscing.  
+  - Targets mood improvement, sense of identity, and social engagement.
+- **Spaced Retrieval Therapy (SRT)**  
+  - Automates recall testing at **increasing intervals** for memory retention.  
+  - Employs **errorless learning** to reinforce important facts or routines.
+- **Cognitive Stimulation Therapy (CST)**  
+  - Offers **interactive mini-games** and conversation topics, fostering cognitive engagement.  
+  - Encourages **social or family involvement** in exercises.
+
+### 2. Memory Graph & Data Handling
+- **NetworkX or Similar**  
+  - MVP uses a lightweight graph structure (e.g., JSON + NetworkX) to store and visualize nodes (people, events, places).  
+  - Potential upgrade to **Neo4j** for larger-scale or advanced querying.
+- **Secure Storage**  
+  - Stores user data, memory entries, and therapy progress in a **privacy-compliant** manner (plan for HIPAA/HITRUST if integrated clinically).  
+  - Potential encryption of images and personal stories.
+
+### 3. Adaptive AI & User Interaction
+- **Conversational AI**  
+  - Powered by **OpenAI GPT-4** (or Mistral-7B) with a conversation flow orchestrated via **LangChain**.  
+  - Tracks user inputs, references memory graph to keep context.
+- **Recall Logic & Confidence Tracking**  
+  - Monitors user responses, flags potential **memory inconsistencies**, and adjusts prompt difficulty.  
+  - Helps avoid reinforcing false memories.
+- **Frontend & Visualization**  
+  - **Flask** (or similar) for the core web UI.  
+  - **Plotly Dash** or an equivalent framework for **interactive graph visualizations**.
+- **Caregiver Dashboard**  
+  - Tracks user engagement (frequency, recall scores).  
+  - Issues alerts if engagement declines, potentially indicating cognitive changes.
+
+### 4. MVP Deliverables
+- **Reminiscence Module**  
+  - Upload personal media, present memory prompts, record user stories.  
+  - Basic data analytics on engagement (e.g., how many stories recorded).
+- **Spaced Retrieval Module**  
+  - Automated intervals for recall quizzes (errorless learning).  
+  - Performance-based scheduling (success = longer interval; failure = immediate reteach).
+- **Cognitive Stimulation Activities**  
+  - Rotating set of mini-games or conversation prompts for mild-to-moderate dementia.  
+  - Optionally incorporate **music therapy** triggers (tagging memories with songs).
+- **Graph Visualization & Updates**  
+  - Real-time node/edge creation (people, places, events).  
+  - Clear interface for caregivers or clinicians to see memory “clusters” and recall strength.
 
 ---
 
-## **8-Hour Plan: Get a Working MVP**
-This plan ensures a **basic working prototype** that can **store and retrieve memories, reinforce recall, and display a simple graph.**
+## Academic Backing & Efficacy
+Memory Bridge integrates **three evidence-based therapies**—Reminiscence Therapy, Spaced Retrieval Therapy, and Cognitive Stimulation Therapy—to reinforce cognitive function and recall in individuals with Alzheimer’s or related dementias.
 
-| **Time Block** | **Task** | **Who Works on It?** |
-|--------------|----------------------------|----------------|
-| **Hour 1-2** | Set up project structure (Flask backend, chatbot API, JSON storage) | **All team members** |
-| **Hour 3-4** | Implement **basic memory graph storage (JSON/NetworkX)** | **EJ** |
-| **Hour 3-4** | Develop **basic chatbot API** that references stored memories | **kane/vera** |
-| **Hour 5-6** | Create **Flask-based chat UI** for interacting with AI | **kane/vera** |
-| **Hour 6-7** | Implement **static memory visualization (Plotly/Matplotlib)** | **EJ** |
-| **Hour 7-8** | **End-to-end testing & debugging** | **All team members** |
+1. **Reminiscence Therapy (RT)**
+   - Studies show **improved mood** and **mild cognitive benefits** when older adults recall meaningful personal memories.
+   - Digital RT tools have demonstrated feasibility and positive social engagement outcomes.
 
- **By Hour 8, We Can Demo:**  
-1 User **enters a memory** in the chat UI.  
-2 AI **remembers & references it later**.  
-3 The **memory graph updates & displays connections**.  
+2. **Spaced Retrieval Therapy (SRT)**
+   - Empirical evidence supports **longer retention** of newly learned info through repeated, spaced recall.
+   - Especially effective for **name-face associations** and daily routines in mild-to-moderate Alzheimer’s.
 
----
+3. **Cognitive Stimulation Therapy (CST)**
+   - Recommended by dementia guidelines (e.g., NICE in the UK) for **maintaining global cognition**.
+   - Digital CST implementations have shown promising adherence and engagement, though variety and personalization are key.
 
-## **24-Hour Plan: Full Scientific Version**
-After the **MVP is working**, we **enhance the project** with features backed by **modern Alzheimer's therapy research**.
-
-| **Time Block** | **Feature** | **Why It’s Important?** | **Who Works on It?** |
-|--------------|--------------------|------------------|----------------|
-| **Hour 9-12** |  **Dynamic Recall Testing** (Recognition → Cued Recall → Free Recall) | **Better memory reinforcement based on cognitive therapy** | **AI Developer** |
-| **Hour 9-12** |  **Image Upload for Rediscovery** | **Adds personal touch, aligns with reminiscence therapy** | **Frontend Dev + Data Scientist** |
-| **Hour 13-16** |  **Confidence Tracking for Memory Integrity** | **Prevents AI from reinforcing false memories** | **AI Developer** |
-| **Hour 13-16** |  **Graph Enhancements (Live Updates & Clickable Nodes)** | **More interactive & visually compelling** | **Data Scientist** |
-| **Hour 17-20** |  **Cognitive Stimulation Therapy (CST) Features** | **Aligns with Alzheimer’s research, makes AI-backed exercises more engaging** | **AI Developer** |
-| **Hour 17-20** |  **Music-Based Memory Recall (Music Therapy)** | **Evidence-backed approach to memory retrieval** | **Frontend + AI Developer** |
-| **Hour 21-24** |  **Final Testing, Bug Fixes, and UI Polish** | **Ensures smooth demo experience** | **All team members** |
+**Why This Matters:**  
+- **24/7 digital availability** allows consistent, short, targeted sessions, potentially outperforming once-a-week therapy.  
+- **Adaptive AI** personalizes difficulty and content, improving motivation and success rates.  
+- Integrating memory therapies with a **visual, evolving memory graph** provides emotional resonance (family photos, stories) and a practical caregiver tool.
 
 ---
 
-## **Scientific Enhancements in the 24-Hour Plan**
-Modern memory therapy methods help us align with existing Alzheimer’s research while keeping our innovation intact. Here’s how we integrate proven therapy techniques into our project:
-
-### **1. Cognitive Stimulation Therapy (CST) Features**
-- AI **introduces theme-based memory exercises** (e.g., "Tell me about a childhood holiday").  
-- **Why It’s Important:** **Gives our project clinical credibility**.
-
-### **2. Music-Based Memory Recall (Music Therapy)**
-- **How We Implement It:** Allow family members to **tag memories with music**.  
-- **Why It’s Important:** **Scientifically backed as a powerful memory trigger**.  
-
-### **3. Confidence Tracking for Memory Integrity**
-- **Prevents AI from reinforcing false memories** by **tracking recall confidence & flagging inconsistencies**.  
+## Future Directions & Next Steps
+- **Pilot & User Testing**  
+  - Run a small trial with 5–10 users/families, gather feedback on usability and perceived cognitive benefits.
+- **Scalability & Integration**  
+  - Explore **partnerships** with aging-in-place providers (e.g., The Helper Bees) to embed Memory Bridge into existing care platforms.
+- **Advanced Personalization**  
+  - Integrate **machine learning** to tailor therapy modules (e.g., SRT intervals, CST difficulty) based on user performance metrics.
+- **Compliance & Security**  
+  - Roadmap for HIPAA/HITRUST compliance if the platform becomes a clinical adjunct.
+- **Long-Term Clinical Validation**  
+  - Potentially collaborate with researchers to publish outcome data on memory recall, caregiver burden, and user quality of life.
 
 ---
 
-## **Hackathon Demo Plan**
- **Live Walkthrough:**  
-1 User **shares a memory** (*"I went to Paris with Lisa in 1998."*).  
-2 **Memory Graph updates** with nodes for **Lisa, Paris, and 1998**.  
-3 AI later **tests recall** → *"Who was with you on that trip?"*  
-4 **Family uploads a photo** → AI uses it for rediscovery.  
-5 **Graph visualization updates dynamically**, showing **stronger recall links**.  
-
----
-
-## **goals**
- **MVP in 8 Hours:** Guarantees **a working demo** with a chatbot + memory graph.  
- **24-Hour Enhancements:** Adds **scientific credibility** using **real therapeutic techniques**.  
- **Emotional Connection:** Family uploads + music recall = **more engaging & human-centered**.  
- **Visually Impactful:** Memory Graph + Image Prompts = **impressive for judges**.  
-
----
-
-### **Next Steps**
-- **Confirm JSON vs. Neo4j for memory storage** (stick with JSON for MVP).  
-- **Define chatbot’s structured recall prompts** for CST-based memory exercises. 
-- **Finalize the UI for family uploads & visualization display.**  
-
+**Memory Bridge AI** aspires to **improve daily life** for individuals with dementia or related conditions by **combining proven memory therapies** with **modern AI** and **data tracking**. Through personalized, adaptive engagement and robust caregiver support tools, we aim to **surpass traditional methods** and enable higher-quality, research-backed memory care in any setting.
