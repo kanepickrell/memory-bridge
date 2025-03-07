@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <p  align="center">"Images from testing self-organizing maps as a mechanisimg for archiving memories to their proper regions"</p>
-  <img src="map.PNG" alt="Description" width="300">
-  <img src="https://github.com/user-attachments/assets/10a67e76-63c4-4769-a784-900580a21341" alt="Description" width="300">
+  <p align="center">"Images from testing self-organizing maps as a mechanisim for archiving memories to their proper regions"</p>
+  <img src="map.PNG" alt="Description" width="400">
+  <img src="https://github.com/user-attachments/assets/10a67e76-63c4-4769-a784-900580a21341" alt="Description" width="400">
 </p>
 
 
