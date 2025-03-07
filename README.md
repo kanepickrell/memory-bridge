@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <p align="center">"Images from testing self-organizing maps as a mechanisim for archiving memories to their proper regions"</p>
+  <p align="center">Images from testing self-organizing maps as a mechanisim for archiving memories to their proper regions</p>
 </p>
 
 
