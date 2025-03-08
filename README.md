@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="map.PNG" alt="Description" width="300">
+  <img src="map.PNG" alt="Description" width="600">
 </p>
 
 
