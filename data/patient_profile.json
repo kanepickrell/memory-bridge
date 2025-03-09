@@ -1,0 +1,96 @@
+{
+    "patients": [
+        {
+            "patient_id": "patient_78910",
+            "demographics": {
+                "name": "John Doe",
+                "age": 72,
+                "gender": "Male",
+                "diagnosis": "Mild Cognitive Impairment"
+            },
+            "therapy_profile": {
+                "baseline_metrics": {
+                    "memory_specificity": 0.5,
+                    "memory_coherence": 0.6,
+                    "emotional_tone": 0.4
+                },
+                "therapy_modality_history": [
+                    {
+                        "session_id": "session_123456",
+                        "modality": "Reminiscence",
+                        "effectiveness_score": 0.8,
+                        "notes": "High engagement with visual and audio cues.",
+                        "timestamp": "2025-03-09T14:05:00Z"
+                    },
+                    {
+                        "session_id": "session_123457",
+                        "modality": "SRT",
+                        "effectiveness_score": 0.7,
+                        "notes": "Successful recall with moderate prompting.",
+                        "timestamp": "2025-03-11T14:20:00Z"
+                    }
+                ],
+                "personalized_metrics": {
+                    "session_outcomes": [
+                        {
+                            "session_id": "session_123456",
+                            "memory_specificity": 0.75,
+                            "memory_coherence": 0.80,
+                            "emotional_tone": 0.85,
+                            "engagement_level": 0.9,
+                            "overall_session_rating": 4.5,
+                            "timestamp": "2025-03-09T15:00:00Z"
+                        },
+                        {
+                            "session_id": "session_123457",
+                            "memory_specificity": 0.70,
+                            "memory_coherence": 0.78,
+                            "emotional_tone": 0.80,
+                            "engagement_level": 0.85,
+                            "overall_session_rating": 4.2,
+                            "timestamp": "2025-03-11T15:00:00Z"
+                        }
+                    ],
+                    "progress_over_time": [
+                        {
+                            "date": "2025-03-09",
+                            "average_memory_specificity": 0.75,
+                            "average_memory_coherence": 0.80,
+                            "average_emotional_tone": 0.85
+                        },
+                        {
+                            "date": "2025-03-11",
+                            "average_memory_specificity": 0.70,
+                            "average_memory_coherence": 0.78,
+                            "average_emotional_tone": 0.80
+                        }
+                    ]
+                },
+                "therapy_goals": {
+                    "current_goals": [
+                        "Improve memory specificity for recalling names",
+                        "Enhance coherence in autobiographical narratives",
+                        "Maintain a positive emotional tone during sessions"
+                    ],
+                    "goal_metrics": {
+                        "memory_specificity_target": 0.8,
+                        "memory_coherence_target": 0.85,
+                        "emotional_tone_target": 0.9
+                    },
+                    "goal_revision_logs": [
+                        {
+                            "revision_id": "rev_001",
+                            "updated_goals": [
+                                "Improve memory specificity for recalling names",
+                                "Enhance narrative coherence in life stories"
+                            ],
+                            "reason": "Patient feedback indicated confusion during narrative sessions; goals adjusted for clarity.",
+                            "timestamp": "2025-03-10T12:00:00Z",
+                            "clinician_comments": "Revised goals to focus on clearer narrative structures."
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
