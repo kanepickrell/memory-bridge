@@ -42,4 +42,4 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           source: "build/*"
-          target: "/home/ubuntu/memory-bridge"  # directory on your Lightsail instance
+          target: "/home/bitnami/memory-bridge"  # directory on your Lightsail instance
