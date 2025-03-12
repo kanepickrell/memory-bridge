@@ -3,7 +3,7 @@ name: Deploy to Lightsail
 on:
   push:
     branches: [ "main" ]
-    # This means: "Run this workflow whenever code is pushed to the 'main' branch."
+  # or "deploy" or whatever branch you want to trigger from
 
 jobs:
   build-and-deploy:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "16"  # or whatever version you need
 
       - name: Install dependencies
         run: npm install
@@ -23,7 +23,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Example: Use appleboy/scp-action to deploy build files to your server
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-folder
+          path: build
+
+      - name: Download build artifacts (just an example of artifact usage)
+        uses: actions/download-artifact@v3
+        with:
+          name: build-folder
+          path: build
+
       - name: Deploy to Lightsail via SSH
         uses: appleboy/scp-action@master
         with:
@@ -31,4 +42,4 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           source: "build/*"
-          target: "/home/bitnami/memory-bridge"
+          target: "/home/ubuntu/memory-bridge"  # directory on your Lightsail instance

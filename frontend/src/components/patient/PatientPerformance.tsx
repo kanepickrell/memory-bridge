@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import PageMeta from "../../components/common/PageMeta";
 import MemoryHealthStatus from "../../components/patient/MemoryHealthStatus";
 import WeeklyRecallPerformance from "../../components/patient/WeeklyRecallPerformance";

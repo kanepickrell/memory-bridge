@@ -35,10 +35,11 @@ export default function MemoryRecallTarget() {
             show: true,
             fontSize: "14px",
             color: "#1D2939",
-            // Move the "Recall Accuracy" label down below the main value
-            offsetY: 30,
+            offsetY: 10,
+            // @ts-expect-error: Force TS to allow the property
             formatter: () => "Recall Accuracy",
           },
+
           value: {
             fontSize: "36px",
             fontWeight: "600",
