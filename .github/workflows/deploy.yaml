@@ -3,7 +3,6 @@ name: Deploy to Lightsail
 on:
   push:
     branches: [ "main" ]
-    # Or specify whichever branch you want to trigger from
 
 jobs:
   build-and-deploy:
@@ -15,20 +14,26 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: "16"  # or any version you need
+          node-version: "16"
 
+      # 1. Install dependencies inside "frontend"
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
+      # 2. Build inside "frontend"
       - name: Build
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
 
-      # Deploy the build folder directly to Lightsail
+      # 3. Deploy the build folder from "frontend/build" 
       - name: Deploy to Lightsail via SSH
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-          source: "build/*"
+          source: "frontend/build/*"
           target: "/home/bitnami/memory-bridge"
