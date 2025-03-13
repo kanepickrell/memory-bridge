@@ -36,5 +36,5 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-          source: "frontend/build/*"
+          source: "frontend/dist/*"
           target: "/home/bitnami/memory-bridge"
