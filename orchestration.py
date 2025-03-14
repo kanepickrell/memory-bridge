@@ -3,7 +3,9 @@ import asyncio
 from datetime import datetime
 from swarm import Swarm, Agent
 
-# SessionAggregator Class remains similar
+# -------------------------------------
+# SessionAggregator Class
+# -------------------------------------
 class SessionAggregator:
     def __init__(self, session_id, patient_id):
         self.data = {
@@ -41,16 +43,17 @@ class SessionAggregator:
     def get_session_data(self):
         return self.data
 
-# Helper function to append session logs asynchronously (simulate I/O-bound work)
+# -------------------------------------
+# Helper to append session logs
+# -------------------------------------
 async def append_session_log(new_session_data, session_log_path="data/session_log.json"):
-    # In a production system, consider using an async file I/O library (e.g., aiofiles)
     try:
         with open(session_log_path, 'r', encoding='utf-8') as file:
             session_log = json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         session_log = {}
 
-    if "sessions" not in session_log or not isinstance(session_log["sessions"], list):
+    if "sessions" not in session_log or not isinstance(session_log.get("sessions"), list):
         session_log["sessions"] = []
 
     session_log["sessions"].append(new_session_data)
@@ -60,13 +63,15 @@ async def append_session_log(new_session_data, session_log_path="data/session_lo
 
     return "Session log updated successfully."
 
-# TherapyAgents class remains largely the same with defined agents.
+# -------------------------------------
+# TherapyAgents class
+# -------------------------------------
 class TherapyAgents:
     def __init__(self):
         self.client = Swarm()
         self.agents = {}
         self.initialize_agents()
-    
+
     def reminiscence():
         # Stub for reminiscence therapy
         pass
@@ -84,7 +89,8 @@ class TherapyAgents:
             name="Agent S",
             instructions="""
             You are an expert in memory therapy and understand when to apply spaced retrieval therapy (SRT)
-            or multi-modal therapy (MULTI). Classify user input as 'SRT' or 'MULTI'.
+            or multi-modal therapy (MULTI). Multi-modal therapy includes CST, Reminiscence Therapy, Narrative Therapy,
+            and Recall Therapy. Classify user input as 'SRT' or 'MULTI'.
             """
         )
 
@@ -92,11 +98,13 @@ class TherapyAgents:
             name="Spaced Retrieval Therapy Agent",
             instructions="""
             Role:
-            You are an expert in SRT, conducting personalized memory training sessions.
+            You are an expert in SRT, conducting personalized memory training sessions for early-stage Alzheimer's patients.
+
             Responsibilities:
-            - Select meaningful memory targets.
-            - Prompt immediate repetition with errorless learning.
-            - Maintain a relaxed, positive conversation.
+            - Select meaningful memory targets for spaced retrieval.
+            - Prompt immediate repetition and conduct recall prompts with errorless learning.
+            - Maintain a relaxed, positive conversation and adapt dynamically.
+
             Output Format:
             - Respond clearly and conversationally.
             - If successful, respond with "COMPLETE".
@@ -107,13 +115,20 @@ class TherapyAgents:
             name="Multi-Modal Therapy Agent",
             instructions="""
             Role:
-            Facilitate personalized multi-modal sessions combining various therapies.
+            You facilitate personalized multi-modal sessions for early-stage Alzheimer's patients, combining CST, 
+            Reminiscence, Narrative, and other therapies.
+
             Responsibilities:
-            - Provide orientation cues and ask engaging questions.
-            - Adapt dynamically based on patient responses.
+            - Provide orientation cues and introduce clear themes.
+            - Engage with personalized questions and maintain positivity.
+
+
+
+            - Adapt to signs of frustration or fatigue.
+
             Output Format:
-            - Respond with conversational prompts.
-            - When done, respond with "COMPLETE".
+            - Respond with conversational questions or statements.
+            - When complete with the activity or patient is finished, ONLY respond with "COMPLETE".
             """
         )
 
@@ -121,21 +136,28 @@ class TherapyAgents:
             name="Mood Detection Agent",
             instructions="""
             Role:
-            Analyze patient conversations to summarize mood using descriptive keywords.
+            Analyze patient conversations and summarize mood using descriptive keywords.
+            Responsibilities:
+            - Identify keywords (e.g., frustrated, happy, anxious, calm).
+
             Output Format:
-            - Return mood keywords as a comma-separated string.
+            - Return mood keywords as a list of strings, e.g., "frustrated, anxious".
             """
         )
 
-        self.agents['therapeutic_progress_analyzer'] = Agent(name="Therapeutic Progress Analyzer", instructions="")
+        self.agents['therapeutic_progress_analyzer'] = Agent(
+            name="Therapeutic Progress Analyzer",
+            instructions=""
+        )
+
         self.agents['caregiver_agent'] = Agent(
             name="Caregiver Agent", 
             instructions="""
             Role:
-            Review the patient's session.
+            You are a seasoned memory care expert who reviews the patient's session.
             Responsibilities:
             - Summarize the session.
-            - Provide clinician-relevant feedback.
+            - Provide clinician-relevant feedback and recommendations.
             Output Format:
             - Return a summary report.
             """
@@ -144,10 +166,10 @@ class TherapyAgents:
             name="Personalization Agent", 
             instructions="""
             Role:
-            Analyze session history to extract insights for future sessions.
+            Analyze session history to extract key personal insights for future sessions.
             Responsibilities:
-            - Update patient profiles.
-            - Extract themes or preferences.
+            - Update patient profiles with new data points.
+            - Extract themes or preferences from the conversation.
             Output Format:
             - Return a concise update report.
             """
@@ -156,7 +178,9 @@ class TherapyAgents:
     def get_agent(self, agent_name):
         return self.agents.get(agent_name)
 
-# Load previous session summary synchronously for now (could also be async if needed)
+# -------------------------------------
+# Optional: Load previous session summary
+# -------------------------------------
 def load_previous_session_summary(patient_id, session_log_path="data/session_log.json"):
     try:
         with open(session_log_path, 'r', encoding='utf-8') as file:
@@ -169,113 +193,93 @@ def load_previous_session_summary(patient_id, session_log_path="data/session_log
         return None
     return None
 
-# A helper function to simulate asynchronous user input.
-# In a real-world scenario, this might be an HTTP request or websocket event.
+# -------------------------------------
+# (Optional) simulate asynchronous user input
+# -------------------------------------
 async def get_patient_response():
-    # For the prototype, run input() in a separate thread to avoid blocking the event loop.
+    # In a real system, you'd get the user input from an API or front-end
     response = await asyncio.to_thread(input, "Patient Response: ")
     return response
 
-# Session class with asynchronous patient engagement
+# -------------------------------------
+# Session class
+# -------------------------------------
 class Session:
     def __init__(self, therapy_agents):
         self.client = therapy_agents.client
         self.agents = therapy_agents.agents
 
     async def engage_patient(self, patient_prompt, patient_id="patient_1"):
+        """
+        Demonstration method that:
+        1. Generates 3 responses from 'srt_agent'
+        2. Stores them in the aggregator
+        3. Hard-codes a chosen response
+        4. Logs everything to session_log.json
+        """
+        # Create aggregator
         aggregator = SessionAggregator(
             session_id=f"session_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
             patient_id=patient_id
         )
 
-        history = [{"role": "user", "content": patient_prompt}]
+        # In a real system, you might run the steering agent to decide 'srt_agent' vs. 'multi_agent'.
+        agent_name = "srt_agent"
+        prompt = patient_prompt
 
-        # Inject previous session context if available
-        previous_summary = load_previous_session_summary(patient_id)
-        if previous_summary:
-            context_message = {"role": "system", "content": f"Previous session summary: {previous_summary}"}
-            history.insert(0, context_message)
+        # 1) Generate multiple responses
+        responses = await self.generate_multiple_responses(agent_name, prompt, num_responses=3)
 
-        last_index = len(history)
-
-        # Steering Agent classifies therapy type
-        steering_response = await asyncio.to_thread(self.client.run, self.agents['steering_agent'], history)
-        classification = steering_response.messages[-1]['content'].strip()
-        print(f"Steering Classification: {classification}")
-
-        agent_name = 'multi_agent' if classification == "MULTI" else 'srt_agent'
-
-        segment_counter = 1
-        session_complete = False
-
-        # Main session loop implemented asynchronously
-        while not session_complete:
-            # Run the selected therapy agent
-            response = await asyncio.to_thread(self.client.run, self.agents[agent_name], history)
-            agent_reply = response.messages[-1]['content'].strip()
-            print(f"{agent_name.upper()}: {agent_reply}")
-
-            new_messages = history[last_index:]
-            last_index = len(history)
-
-            segment = {
-                "segment_id": segment_counter,
-                "modality": agent_name,
-                "start_time": datetime.utcnow().isoformat() + "Z",
-                "end_time": datetime.utcnow().isoformat() + "Z",
-                "transcript": new_messages,
-                "emotional_cues": {},
-                "agent_decisions": f"{agent_name} processed."
-            }
-            aggregator.add_dialogue_segment(segment)
-            segment_counter += 1
-
-            if agent_reply == "COMPLETE":
-                session_complete = True
-            else:
-                history.append({"role": "assistant", "content": agent_reply})
-                # Await asynchronous patient response from the front-end layer
-                patient_response = await get_patient_response()
-                history.append({"role": "user", "content": patient_response})
-
-        # Post-session processing
-        mood_analysis = await asyncio.to_thread(self.client.run, self.agents['mood_detection_agent'], history)
-        mood = mood_analysis.messages[-1]['content'].strip()
-        aggregator.update_mood(mood)
-
-        caregiver_summary = await asyncio.to_thread(self.client.run, self.agents['caregiver_agent'], history)
-        c_summary = caregiver_summary.messages[-1]['content'].strip()
-        print(f"Caregiver Summary: {c_summary}")
-
-        summary = {
-            "overall_sentiment": mood,
-            "key_memory_recall_success": "N/A, to be evaluated",
-            "notes": "Session completed; patient engaged.",
-            "clinician_recommendation": c_summary
+        # 2) Store them in aggregator as a single segment
+        multiple_responses_segment = {
+            "segment_id": 1,
+            "modality": agent_name,
+            "start_time": datetime.utcnow().isoformat() + "Z",
+            "end_time": datetime.utcnow().isoformat() + "Z",
+            "prompt": prompt,
+            "candidate_responses": [
+                {"response_id": f"res{i+1}", "text": resp}
+                for i, resp in enumerate(responses)
+            ],
+            "chosen_response": None,
+            "agent_decisions": f"{agent_name} generated multiple responses."
         }
+        aggregator.add_dialogue_segment(multiple_responses_segment)
 
-        aggregator.update_session_summary(summary)
+        # 3) Suppose the user or front-end picks a top response
+        chosen_response_id = "res2"  # Hard-coded for demonstration
+        multiple_responses_segment["chosen_response"] = chosen_response_id
+
+        # 4) Wrap up session
         aggregator.set_end_time()
-
-        # Asynchronously update the session log (simulate I/O-bound operation)
         append_result = await append_session_log(aggregator.get_session_data())
         print(append_result)
 
-        personalization_update = await asyncio.to_thread(self.client.run, self.agents['personalization_agent'], history)
-        therapeutic_progress = await asyncio.to_thread(self.client.run, self.agents['therapeutic_progress_analyzer'], history)
-
         return "Session COMPLETE"
 
-# Main entry point for backend session orchestration
-# This main function can be triggered by a front-end interface, for example via an API endpoint.
+    async def generate_multiple_responses(self, agent_name: str, prompt: str, num_responses=3):
+        """
+        Runs the same agent multiple times to produce distinct responses.
+        Alternatively, you could instruct one agent to produce multiple variations 
+        in a single prompt, or use multiple agents.
+        """
+        responses = []
+        for _ in range(num_responses):
+            history = [{"role": "user", "content": prompt}]
+            response = await asyncio.to_thread(self.client.run, self.agents[agent_name], history)
+            agent_reply = response.messages[-1]['content'].strip()
+            responses.append(agent_reply)
+        return responses
+
+# -------------------------------------
+# Main entry point
+# -------------------------------------
 async def main():
     therapy_agents = TherapyAgents()
     session = Session(therapy_agents)
-    difficult_prompt = "I used to go fishing somewhere important, but I can't remember who I went with. Can you help me?"
-    print(f"Difficult Prompt: {difficult_prompt}")
-    response = await session.engage_patient(difficult_prompt, patient_id="patient_1")
-    print(f"Final Response: {response}")
+    prompt = "I used to go fishing somewhere important, but I can't remember who I went with."
+    result = await session.engage_patient(prompt, "patient_1")
+    print("Local test result:", result)
 
-# Entry point for asynchronous execution
 if __name__ == "__main__":
     asyncio.run(main())

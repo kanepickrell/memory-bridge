@@ -1,0 +1,61 @@
+{
+    "sessions": [
+        {
+            "session_id": "session_20250314192433",
+            "patient_id": "patient_1",
+            "start_time": "2025-03-14T19:24:33.334911Z",
+            "end_time": null,
+            "chat_history": []
+        },
+        {
+            "session_id": "session_20250314192519",
+            "patient_id": "patient_1",
+            "start_time": "2025-03-14T19:25:19.944849Z",
+            "end_time": null,
+            "chat_history": []
+        },
+        {
+            "session_id": "session_20250314192539",
+            "patient_id": "patient_1",
+            "start_time": "2025-03-14T19:25:39.689847Z",
+            "end_time": null,
+            "chat_history": []
+        },
+        {
+            "session_id": "session_20250314194152",
+            "start_time": "2025-03-14T19:41:52.892413Z",
+            "responses": [
+                {
+                    "response_id": "res1",
+                    "text": "AI response #1..."
+                },
+                {
+                    "response_id": "res2",
+                    "text": "AI response #2..."
+                },
+                {
+                    "response_id": "res3",
+                    "text": "AI response #3..."
+                }
+            ]
+        },
+        {
+            "session_id": "session_20250314194227",
+            "start_time": "2025-03-14T19:42:27.510628Z",
+            "responses": [
+                {
+                    "response_id": "res1",
+                    "text": "AI response #1..."
+                },
+                {
+                    "response_id": "res2",
+                    "text": "AI response #2..."
+                },
+                {
+                    "response_id": "res3",
+                    "text": "AI response #3..."
+                }
+            ]
+        }
+    ]
+}

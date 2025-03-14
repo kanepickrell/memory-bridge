@@ -1,0 +1,238 @@
+{
+    "feedbacks": [
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "hi",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "AI response #1...",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "AI response #2...",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "AI response #3...",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "chat_history": [],
+            "timestamp": "2025-03-14T19:42:01.568029Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "hi",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Hello! How are you feeling today? Is there anything specific on your mind?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Hello! How are you today? Is there anything specific you'd like to focus on during our session, or should we pick a meaningful memory target together?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Hello! How are you today? If you're ready, we can start with a little memory exercise designed to be enjoyable and supportive. Let me know if you have any particular memories or information you'd like to focus on today.",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "chat_history": [],
+            "timestamp": "2025-03-14T19:49:24.539566Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "hi",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Hello there! How are you feeling today? Is there anything specific you'd like to work on or talk about?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Hello! How are you today?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Hello! How are you today? I'm here to help with memory support. Is there anything specific you'd like to work on, or should we perhaps try recalling some meaningful information you'd like to remember better?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "chat_history": [
+                {
+                    "role": "user",
+                    "content": "hi"
+                },
+                {
+                    "role": "assistant",
+                    "content": "AI echo: hi"
+                }
+            ],
+            "timestamp": "2025-03-14T19:54:09.253139Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "hello",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Hello! It's great to see you today. How are you feeling?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Hello! How are you feeling today? I'm here to help with some memory exercises. Is there a particular memory or activity you'd like to work on together?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Hello! How are you feeling today? Is there anything specific you'd like to work on together during our session?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "chat_history": [],
+            "timestamp": "2025-03-14T19:55:43.962969Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "can we play a game?",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Of course! Let's play a memory game called \"Spaced Retrieval Training.\" I'll suggest something meaningful for you, and we'll use it to help strengthen your memory. \n\nLet's start with a familiar place. Can you think of your favorite spot in your home? Can you tell me what it is?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Of course! Let's play a memory game that can help with recall. We'll do something called Spaced Retrieval Training, or SRT. \n\nFirst, let's select something meaningful for you to try to remember. It could be a name, a favorite place, or an important piece of information. Do you have something in mind, or would you like a suggestion?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Absolutely, we can play a memory game together. Let's try a simple exercise using Spaced Retrieval Training.\n\nTo start, let's choose a meaningful memory target. How about we remember your favorite meal? What is it?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "chat_history": [
+                {
+                    "role": "user",
+                    "content": "hi"
+                },
+                {
+                    "role": "assistant",
+                    "content": "AI echo: hi"
+                },
+                {
+                    "role": "user",
+                    "content": "kkk"
+                },
+                {
+                    "role": "assistant",
+                    "content": "AI echo: kkk"
+                }
+            ],
+            "timestamp": "2025-03-14T19:56:54.623109Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "my name is alexa",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Hi Alexa, it's great to meet you! Let's make sure we remember your name today. Could you please repeat your name back to me?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Nice to meet you, Alexa! Let's work together today on some memory exercises. How about we start with something important to you, like your own name? Can you repeat after me, \"My name is Alexa\"?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Hello Alexa! It's great to meet you. We'll be working together on some memory exercises today. To start, let's focus on remembering your name. Could you tell me your name again, please?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "timestamp": "2025-03-14T20:07:48.510800Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "what is my name?",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "I don't know your name yet. Could you please tell me your name, and we can use it as our first memory target for today's session?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Let's work together to strengthen that memory. Your name is [User's Name]. Can you repeat that back to me, please?",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Let's make sure to reinforce your memory of your name. You mentioned earlier that your name is [Your Name]. Could you please repeat it after me? What's your name?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "timestamp": "2025-03-14T20:08:21.135094Z"
+        }
+    ]
+}
