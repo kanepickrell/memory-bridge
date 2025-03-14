@@ -6,8 +6,8 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { MoreDotIcon } from "../../icons";
 
 export default function MemoryRecallTarget() {
-  const recallAccuracy = 82;
-  const recallTarget = 85;
+  const recallAccuracy = 81;
+  const recallTarget = 90;
 
   const series = [recallAccuracy];
   const options: ApexOptions = {
