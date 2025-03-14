@@ -11,6 +11,7 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import SessionPlanning from "./components/patient/SessionPlanning";
 import PatientPerformance from "./components/patient/PatientPerformance";
+import PilotFeedback from "./components/patient/PilotFeedback";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
 
             {/* Others Page */}
             {/* <Route path="/profile" element={<UserProfiles />} /> */}
+            <Route path="/PilotFeedback" element={<PilotFeedback />} />
             <Route path="/SessionPlanning" element={<SessionPlanning />} />
             <Route path="/PatientPerformance" element={<PatientPerformance />} />
 
