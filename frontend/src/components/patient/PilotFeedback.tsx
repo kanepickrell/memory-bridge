@@ -1,10 +1,51 @@
-// PilotFeedback.jsx
+// PilotFeedback.tsx
 import { useState } from "react";
 import PageMeta from "../common/PageMeta";
 
+// 1. Define TypeScript interfaces
+
+/** Single AI response structure */
+interface AIResponse {
+    id: string;
+    text: string;
+}
+
+/** Possible rating categories */
+type RatingCategory =
+    | "clarity"
+    | "therapeutic_value"
+    | "empathy"
+    | "personalization"
+    | "consistency"
+    | "safety";
+
+/** Ratings object for each response */
+interface Ratings {
+    [key: string]: number | undefined; // e.g., clarity: 3, empathy: 4, etc.
+}
+
+/** Detailed feedback for one AI response */
+interface DetailedFeedbackItem {
+    ratings: Ratings;
+    feedback: string;
+}
+
+/** A map of responseId => DetailedFeedbackItem */
+interface DetailedFeedbackMap {
+    [responseId: string]: DetailedFeedbackItem;
+}
+
+/** Chat message structure */
+interface ChatMessage {
+    role: "user" | "assistant";
+    content: string;
+}
+
 export default function PilotFeedback() {
+    // 2. Initialize your data and states with explicit types
+
     // Placeholder AI responses
-    const aiResponses = [
+    const aiResponses: AIResponse[] = [
         {
             id: "res1",
             text: "Can you recall any small details, like a window view or a smell?",
@@ -19,54 +60,51 @@ export default function PilotFeedback() {
         },
     ];
 
-    // 1) Track the order in which responses are clicked (for ranking).
-    //    e.g., ["res2", "res1", "res3"] => res2 is rank 1, res1 is rank 2, res3 is rank 3.
-    const [rankSequence, setRankSequence] = useState([]);
+    // Rank sequence: e.g. ["res2", "res1", "res3"] => res2 is rank 1, res1 is rank 2, res3 is rank 3
+    const [rankSequence, setRankSequence] = useState<string[]>([]);
 
-    // 2) Which response is currently selected for editing in the rating form?
-    const [selectedResponse, setSelectedResponse] = useState(null);
+    // Which response is currently selected for expanded rating view
+    const [selectedResponse, setSelectedResponse] = useState<string | null>(null);
 
-    // 3) Detailed feedback for each response, keyed by response ID.
-    //    Each entry has { ratings: { clarity: x, ... }, feedback: "" }
-    const [detailedFeedback, setDetailedFeedback] = useState({
+    // Detailed feedback for each response
+    const [detailedFeedback, setDetailedFeedback] = useState<DetailedFeedbackMap>({
         res1: { ratings: {}, feedback: "" },
         res2: { ratings: {}, feedback: "" },
         res3: { ratings: {}, feedback: "" },
     });
 
     // Chat state
-    const [patientMessage, setPatientMessage] = useState("");
-    const [chatHistory, setChatHistory] = useState([]);
+    const [patientMessage, setPatientMessage] = useState<string>("");
+    const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 
     // -------------------------------------
     // RANKING LOGIC
     // -------------------------------------
-    // Clicking a response toggles its rank in rankSequence.
-    const handleRankClick = (responseId) => {
+    /** Toggles rank assignment for a given responseId */
+    const handleRankClick = (responseId: string) => {
         setRankSequence((prev) => {
             const index = prev.indexOf(responseId);
-            // If it's already in the list, remove it (un-rank).
             if (index !== -1) {
+                // Already ranked => un-rank it
                 const newSeq = [...prev];
                 newSeq.splice(index, 1);
                 return newSeq;
             }
-            // Otherwise, if we have room (< 3), add it.
+            // Not in rankSequence => add if there's room (<3)
             if (prev.length < 3) {
                 return [...prev, responseId];
             }
-            // If we already have 3, do nothing or handle differently.
-            return prev;
+            return prev; // Already 3 assigned, do nothing
         });
     };
 
-    // Helper to get rank label (1, 2, 3) or null if unranked.
-    const getRankLabel = (responseId) => {
+    /** Returns rank label (1,2,3) or null if unranked */
+    const getRankLabel = (responseId: string): number | null => {
         const index = rankSequence.indexOf(responseId);
         return index === -1 ? null : index + 1;
     };
 
-    // Reset all ranks
+    /** Reset all ranks */
     const handleResetRanks = () => {
         setRankSequence([]);
     };
@@ -74,13 +112,17 @@ export default function PilotFeedback() {
     // -------------------------------------
     // DETAILED FEEDBACK LOGIC
     // -------------------------------------
-    // Switch the "selected" response for editing
-    const handleSelectResponse = (responseId) => {
+    /** Toggles which response is currently selected for editing */
+    const handleSelectResponse = (responseId: string | null) => {
         setSelectedResponse(responseId);
     };
 
-    // Update a specific rating in the selected response's feedback
-    const handleRatingChange = (responseId, category, value) => {
+    /** Update a specific rating in the selected response's feedback */
+    const handleRatingChange = (
+        responseId: string,
+        category: RatingCategory,
+        value: number
+    ) => {
         setDetailedFeedback((prev) => ({
             ...prev,
             [responseId]: {
@@ -93,8 +135,8 @@ export default function PilotFeedback() {
         }));
     };
 
-    // Update the textual feedback for the selected response
-    const handleTextFeedbackChange = (responseId, value) => {
+    /** Update the textual feedback for the selected response */
+    const handleTextFeedbackChange = (responseId: string, value: string) => {
         setDetailedFeedback((prev) => ({
             ...prev,
             [responseId]: {
@@ -108,21 +150,16 @@ export default function PilotFeedback() {
     // SUBMIT FEEDBACK
     // -------------------------------------
     const handleSubmitFeedback = async () => {
-        // Convert rankSequence into an object: { res1: 1, res2: 2, res3: 3 }
-        const ranksObj = rankSequence.reduce((acc, id, i) => {
+        // Convert rankSequence => { res1: 1, res2: 2, res3: 3 }
+        const ranksObj: { [id: string]: number } = rankSequence.reduce((acc, id, i) => {
             acc[id] = i + 1;
             return acc;
-        }, {});
+        }, {} as { [id: string]: number });
 
-        // Build final payload
         const feedbackData = {
             session_id: "session_20250314155454", // Example session ID
             patient_id: "patient_1", // Example patient ID
-
-            // Ranking data
             ranks: ranksObj,
-
-            // Detailed feedback for all responses
             details: detailedFeedback,
         };
 
@@ -160,9 +197,11 @@ export default function PilotFeedback() {
     const handlePatientMessageSubmit = async () => {
         if (!patientMessage.trim()) return;
 
-        // Add patient message to chat history
-        const newChat = [...chatHistory, { role: "user", content: patientMessage }];
+        const newMessage: ChatMessage = { role: "user", content: patientMessage };
+        const newChat = [...chatHistory, newMessage];
         setChatHistory(newChat);
+
+
         setPatientMessage("");
 
         try {
@@ -188,69 +227,63 @@ export default function PilotFeedback() {
 
     return (
         <>
-            {/* Page Metadata */}
             <PageMeta
                 title="Pilot Feedback | MemoryBridge"
                 description="Expert feedback for AI memory therapy responses"
             />
 
-            {/* Page Container */}
             <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-white dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100">
                 {/* Page Header */}
                 <div className="space-y-1">
-                    <h1 className="text-2xl font-bold">
-                        Pilot Feedback
-                    </h1>
+                    <h1 className="text-2xl font-bold">Pilot Feedback</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                        1) Click each response in order of preference to rank them (1–3).
-                        2) Enter detailed ratings for each response (optional).
+                        1) Click each response in order of preference to rank them (1–3).<br />
+                        2) Enter detailed ratings for each response (optional).<br />
                         3) Submit your final feedback below.
                     </p>
                 </div>
 
-                {/* AI Responses + Ranking Section */}
+                {/* AI Responses */}
                 <div className="flex flex-col md:flex-row gap-4">
                     {aiResponses.map((res) => {
                         const rankLabel = getRankLabel(res.id);
-                        const { ratings, feedback } = detailedFeedback[res.id];
                         const isSelected = selectedResponse === res.id;
+                        const { ratings, feedback } = detailedFeedback[res.id];
 
                         return (
                             <div
                                 key={res.id}
                                 className="flex-1 rounded-lg border border-gray-200 
-                                           dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm 
-                                           hover:shadow-md transition-shadow relative space-y-2"
+                           dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm 
+                           hover:shadow-md transition-shadow relative space-y-2"
                             >
                                 <p className="text-sm md:text-base">{res.text}</p>
 
-                                {/* Rank Display / Toggle */}
+                                {/* Rank Toggle */}
                                 <button
                                     className={`inline-block px-3 py-1 text-sm rounded-full 
-                                                border dark:border-gray-600
-                                                ${rankLabel
+                              border dark:border-gray-600
+                              ${rankLabel
                                             ? "bg-green-100 dark:bg-green-700/50 text-green-700 dark:text-green-100"
                                             : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-200"
                                         }`}
                                     onClick={() => handleRankClick(res.id)}
                                 >
-                                    {rankLabel
-                                        ? `Rank: ${rankLabel}`
-                                        : "Click to Rank"}
+                                    {rankLabel ? `Rank: ${rankLabel}` : "Click to Rank"}
                                 </button>
 
-                                {/* Expand / Collapse Detailed Ratings */}
+                                {/* Show/Hide Ratings */}
                                 <button
                                     className={`block w-full bg-blue-100 dark:bg-blue-700/50 
-                                                text-blue-600 dark:text-blue-200 p-2 rounded-lg 
-                                                hover:bg-blue-200 dark:hover:bg-blue-700 text-sm font-medium
-                                                ${isSelected ? "ring-2 ring-blue-500" : ""}`}
+                              text-blue-600 dark:text-blue-200 p-2 rounded-lg 
+                              hover:bg-blue-200 dark:hover:bg-blue-700 text-sm font-medium
+                              ${isSelected ? "ring-2 ring-blue-500" : ""}`}
                                     onClick={() => handleSelectResponse(isSelected ? null : res.id)}
                                 >
                                     {isSelected ? "Hide Ratings" : "Show Ratings"}
                                 </button>
 
-                                {/* Detailed Ratings for This Response (inline) */}
+                                {/* Inline Ratings for This Response */}
                                 {isSelected && (
                                     <div className="mt-2 bg-gray-50 dark:bg-gray-700 p-3 rounded space-y-2">
                                         <p className="text-xs italic text-gray-600 dark:text-gray-200">
@@ -259,29 +292,38 @@ export default function PilotFeedback() {
 
                                         {/* Ratings Grid */}
                                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                            {["clarity", "therapeutic_value", "empathy", "personalization", "consistency", "safety"].map(
-                                                (category) => (
-                                                    <div key={category} className="flex flex-col space-y-1">
-                                                        <label className="text-xs font-medium capitalize">
-                                                            {category.replace("_", " ")}
-                                                        </label>
-                                                        <select
-                                                            className="border dark:border-gray-600 rounded p-1 bg-white dark:bg-gray-900 text-xs"
-                                                            value={ratings[category] || ""}
-                                                            onChange={(e) =>
-                                                                handleRatingChange(res.id, category, Number(e.target.value))
-                                                            }
-                                                        >
-                                                            <option value="">--</option>
-                                                            {[1, 2, 3, 4, 5].map((num) => (
-                                                                <option key={num} value={num}>
-                                                                    {num}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    </div>
-                                                )
-                                            )}
+                                            {[
+                                                "clarity",
+                                                "therapeutic_value",
+                                                "empathy",
+                                                "personalization",
+                                                "consistency",
+                                                "safety",
+                                            ].map((category) => (
+                                                <div key={category} className="flex flex-col space-y-1">
+                                                    <label className="text-xs font-medium capitalize">
+                                                        {category.replace("_", " ")}
+                                                    </label>
+                                                    <select
+                                                        className="border dark:border-gray-600 rounded p-1 bg-white dark:bg-gray-900 text-xs"
+                                                        value={ratings[category] || ""}
+                                                        onChange={(e) =>
+                                                            handleRatingChange(
+                                                                res.id,
+                                                                category as RatingCategory,
+                                                                Number(e.target.value)
+                                                            )
+                                                        }
+                                                    >
+                                                        <option value="">--</option>
+                                                        {[1, 2, 3, 4, 5].map((num) => (
+                                                            <option key={num} value={num}>
+                                                                {num}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            ))}
                                         </div>
 
                                         {/* Qualitative Feedback Input */}
@@ -289,7 +331,9 @@ export default function PilotFeedback() {
                                             className="w-full p-2 border dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-sm"
                                             placeholder="Provide additional feedback..."
                                             value={feedback}
-                                            onChange={(e) => handleTextFeedbackChange(res.id, e.target.value)}
+                                            onChange={(e) =>
+                                                handleTextFeedbackChange(res.id, e.target.value)
+                                            }
                                         />
                                     </div>
                                 )}
@@ -302,7 +346,7 @@ export default function PilotFeedback() {
                 <div className="flex justify-end">
                     <button
                         className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2 rounded 
-                                   hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
+                       hover:bg-gray-300 dark:hover:bg-gray-600 text-sm"
                         onClick={handleResetRanks}
                     >
                         Reset Ranks
@@ -332,7 +376,8 @@ export default function PilotFeedback() {
                                         : "text-left text-gray-800 dark:text-gray-100"
                                 }
                             >
-                                <strong>{msg.role === "user" ? "Patient: " : "AI: "}</strong> {msg.content}
+                                <strong>{msg.role === "user" ? "Patient: " : "AI: "}</strong>{" "}
+                                {msg.content}
                             </div>
                         ))}
                     </div>
