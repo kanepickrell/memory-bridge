@@ -37,6 +37,7 @@ export default function DemoPage() {
     const handleStop = async (blobUrl: string) => {
         setAudioBlobUrl(blobUrl);
         console.log("Blob URL:", blobUrl);
+        console.log("AudioBlob URL", audioBlobUrl);
 
         // Convert the blob URL into a Blob object
         const res = await fetch(blobUrl);
