@@ -1,15 +1,54 @@
+import { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { MoreDotIcon } from "../../icons";
 
+// The structure of your weekly data JSON
+interface WeeklyPerformanceData {
+  weeks: string[];
+  srt: number[];
+  cst: number[];
+  rt: number[];
+}
+
 export default function MemoryRecallTarget() {
-  const recallAccuracy = 81;
+  const [recallAccuracy, setRecallAccuracy] = useState<number>(0);
   const recallTarget = 90;
 
+  const [isOpen, setIsOpen] = useState(false);
+  function toggleDropdown() {
+    setIsOpen(!isOpen);
+  }
+  function closeDropdown() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/weekly_performance")
+      .then((res) => res.json())
+      .then((data: WeeklyPerformanceData) => {
+        const totalWeeks = data.weeks.length;
+        if (totalWeeks === 0) return;
+
+        const sumSrt = data.srt.reduce((a, b) => a + b, 0);
+        const sumCst = data.cst.reduce((a, b) => a + b, 0);
+        const sumRt = data.rt.reduce((a, b) => a + b, 0);
+
+        const totalSum = sumSrt + sumCst + sumRt;
+        const totalDataPoints = totalWeeks * 3; // srt, cst, rt
+        const overallAvg = totalSum / totalDataPoints;
+
+        setRecallAccuracy(Math.round(overallAvg));
+      })
+      .catch((err) => console.error("Error fetching weekly performance:", err));
+  }, []);
+
   const series = [recallAccuracy];
+
+  // Remove the `formatter` property from the `name` object
+  // and use `labels: ["Recall Accuracy"]` below
   const options: ApexOptions = {
     chart: {
       fontFamily: "Outfit, sans-serif",
@@ -19,12 +58,9 @@ export default function MemoryRecallTarget() {
     },
     plotOptions: {
       radialBar: {
-        // Make the arc bigger (so there's more room inside)
         startAngle: -90,
         endAngle: 90,
-        hollow: {
-          size: "70%", // Was 80%. Reducing it gives more space for labels
-        },
+        hollow: { size: "70%" },
         track: {
           background: "#E4E7EC",
           strokeWidth: "100%",
@@ -36,36 +72,22 @@ export default function MemoryRecallTarget() {
             fontSize: "14px",
             color: "#1D2939",
             offsetY: 10,
-            // @ts-expect-error: Force TS to allow the property
-            formatter: () => "Recall Accuracy",
+            // Removed formatter here
           },
-
           value: {
             fontSize: "36px",
             fontWeight: "600",
             color: "#1D2939",
-            // Move the numeric value higher
             offsetY: -15,
             formatter: (val: number) => `${val}%`,
           },
         },
       },
     },
-
     colors: ["#465FFF"],
-    stroke: {
-      lineCap: "round",
-    },
-    labels: ["Recall Accuracy"],
+    stroke: { lineCap: "round" },
+    labels: ["Recall Accuracy"], // This sets the name label
   };
-
-  const [isOpen, setIsOpen] = useState(false);
-  function toggleDropdown() {
-    setIsOpen(!isOpen);
-  }
-  function closeDropdown() {
-    setIsOpen(false);
-  }
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
@@ -104,11 +126,8 @@ export default function MemoryRecallTarget() {
           </div>
         </div>
 
-        {/* Remove or increase the max-h class to avoid clipping */}
         <div className="relative">
-          <div>
-            <Chart options={options} series={series} type="radialBar" height={330} />
-          </div>
+          <Chart options={options} series={series} type="radialBar" height={330} />
         </div>
 
         <div className="mt-5 text-center">

@@ -233,6 +233,64 @@
                 }
             ],
             "timestamp": "2025-03-14T20:08:21.135094Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "I cant remember my 17th birthday",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "That's okay, birthdays can sometimes blur together over the years. Let's focus on creating a new memory target that feels meaningful and positive for you. \n\nCan you tell me something specific you enjoy or a favorite activity you've done recently? We can use that as a basis to help strengthen your recall.",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "That's okay. Let's focus on strengthening and retaining some special memories. Would you like to share an important event or a person from that time who was significant to you?\n\nFor example, it could be a family member or a close friend who was part of that birthday celebration. We can work on anchoring that memory for you.",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "That's okay! Memories can be funny like that, but let's focus on creating new, meaningful ones. How about we use a recent and positive event as our memory target? \n\nCan you think of a fun event you've attended recently, like a family gathering or a nice outing? We can focus on that, and I'll help you remember more about it.",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "timestamp": "2025-03-14T23:27:25.814716Z"
+        },
+        {
+            "session_id": "session_20250314155454",
+            "patient_id": "patient_1",
+            "prompt": "hello",
+            "ai_responses": [
+                {
+                    "response_id": "res1",
+                    "text": "Hello! How are you feeling today? Is there anything specific you'd like to work on or focus on during our session?",
+                    "rank": 2,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res2",
+                    "text": "Hello! How are you feeling today? If you're ready, we can start with our memory training session. Let me know when you're comfortable, and we can begin by selecting a meaningful memory target.",
+                    "rank": 1,
+                    "ratings": {},
+                    "feedback": ""
+                },
+                {
+                    "response_id": "res3",
+                    "text": "Hello! How are you doing today? Is there anything specific you'd like to work on or discuss in our memory training session?",
+                    "rank": 3,
+                    "ratings": {},
+                    "feedback": ""
+                }
+            ],
+            "timestamp": "2025-03-15T18:14:51.434953Z"
         }
     ]
 }

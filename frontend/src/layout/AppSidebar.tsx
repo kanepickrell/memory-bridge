@@ -25,6 +25,11 @@ const navItems: NavItem[] = [
   {
     icon: <UserCircleIcon />,
     name: "Talk To Remi",
+    path: "/DemoPage",
+  },
+  {
+    icon: <UserCircleIcon />,
+    name: "Pilot Feedback",
     path: "/PilotFeedback",
   },
   {
@@ -32,11 +37,6 @@ const navItems: NavItem[] = [
     name: "Session Planning",
     path: "/SessionPlanning",
   },
-  // {
-  //   icon: <UserCircleIcon />,
-  //   name: "Memory Map (Under Construction)",
-  //   path: "/MemoryMap",
-  // },
 ];
 
 const AppSidebar: React.FC = () => {

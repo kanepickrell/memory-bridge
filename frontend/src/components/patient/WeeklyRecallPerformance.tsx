@@ -1,20 +1,56 @@
+import { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { MoreDotIcon } from "../../icons";
-import { useState } from "react";
+
+interface WeeklyPerformanceData {
+  weeks: string[];
+  srt: number[];
+  cst: number[];
+  rt: number[];
+}
 
 export default function WeeklyRecallPerformance() {
+  // State to store fetched weekly performance data
+  const [weeklyData, setWeeklyData] = useState<WeeklyPerformanceData>({
+    weeks: [],
+    srt: [],
+    cst: [],
+    rt: []
+  });
+
+  // Dropdown state
+  const [isOpen, setIsOpen] = useState(false);
+
+  // On component mount, fetch data from your API or JSON file
+  useEffect(() => {
+    // fetch("/data/weekly_performance.json")
+    fetch("http://127.0.0.1:8000/weekly_performance")
+      .then((res) => res.json())
+      .then((data: WeeklyPerformanceData) => {
+        setWeeklyData(data);
+      })
+      .catch((err) => console.error("Error fetching weekly performance:", err));
+  }, []);
+
+  function toggleDropdown() {
+    setIsOpen(!isOpen);
+  }
+
+  function closeDropdown() {
+    setIsOpen(false);
+  }
+
+  // Chart options
   const options: ApexOptions = {
     colors: ["#465fff", "#00E396", "#FEB019"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "bar",
       height: 180,
-      toolbar: {
-        show: false,
-      },
+      toolbar: { show: false },
     },
     plotOptions: {
       bar: {
@@ -24,35 +60,16 @@ export default function WeeklyRecallPerformance() {
         borderRadiusApplication: "end",
       },
     },
-    dataLabels: {
-      enabled: false,
-    },
+    dataLabels: { enabled: false },
     stroke: {
       show: true,
       width: 2,
       colors: ["transparent"],
     },
     xaxis: {
-      categories: [
-        "Week 1",
-        "Week 2",
-        "Week 3",
-        "Week 4",
-        "Week 5",
-        "Week 6",
-        "Week 7",
-        "Week 8",
-        "Week 9",
-        "Week 10",
-        "Week 11",
-        "Week 12",
-      ],
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
+      categories: weeklyData.weeks,
+      axisBorder: { show: false },
+      axisTicks: { show: false },
     },
     legend: {
       show: true,
@@ -61,54 +78,28 @@ export default function WeeklyRecallPerformance() {
       fontFamily: "Outfit",
     },
     yaxis: {
-      title: {
-        text: "Accuracy (%)",
-      },
+      title: { text: "Accuracy (%)" },
     },
     grid: {
       yaxis: {
-        lines: {
-          show: true,
-        },
+        lines: { show: true },
       },
     },
-    fill: {
-      opacity: 1,
-    },
+    fill: { opacity: 1 },
     tooltip: {
-      x: {
-        show: false,
-      },
+      x: { show: false },
       y: {
         formatter: (val: number) => `${val}%`,
       },
     },
   };
 
+  // Dynamic series based on fetched data
   const series = [
-    {
-      name: "SRT",
-      data: [85, 88, 90, 87, 92, 91, 89, 90, 93, 88, 86, 91],
-    },
-    {
-      name: "CST",
-      data: [80, 82, 85, 83, 84, 82, 80, 81, 83, 85, 84, 82],
-    },
-    {
-      name: "RT",
-      data: [78, 80, 79, 81, 80, 82, 80, 79, 81, 83, 80, 81],
-    },
+    { name: "SRT", data: weeklyData.srt },
+    { name: "CST", data: weeklyData.cst },
+    { name: "RT", data: weeklyData.rt },
   ];
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleDropdown() {
-    setIsOpen(!isOpen);
-  }
-
-  function closeDropdown() {
-    setIsOpen(false);
-  }
 
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6">

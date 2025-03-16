@@ -232,7 +232,7 @@ export default function PilotFeedback() {
                 <div className="space-y-1">
                     <h1 className="text-2xl font-bold">Pilot Feedback</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                        A single-turn feedback interface for experts to evaluate AI responses.
+                        A single-turn feedback interface for memory care experts to evaluate AI responses.
                     </p>
                 </div>
 
@@ -243,14 +243,14 @@ export default function PilotFeedback() {
                     </label>
                     <input
                         type="text"
-                        className="w-full border dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-900 text-sm"
+                        className="w-full border dark:border-gray-700 p-2 rounded-lg bg-white dark:bg-gray-900 text-sm"
                         placeholder="E.g., 'I can't remember my childhood home.'"
                         value={patientPrompt}
                         onChange={(e) => setPatientPrompt(e.target.value)}
                     />
                     <button
                         onClick={handleFetchResponses}
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm font-medium"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 text-sm font-medium"
                     >
                         Fetch AI Responses
                     </button>

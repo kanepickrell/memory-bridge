@@ -1,61 +1,28 @@
-import sounddevice as sd
+# voice.py
+
+import os
 from openai import OpenAI
-import numpy as np
-import io
-from scipy.io.wavfile import write
 
-class VoiceChat:
-    def __init__(self):
-        self.client = OpenAI(api_key='ADD_KEY_LATER')
+class VoiceManager:
+    """
+    A minimal class to handle audio transcription with OpenAI's Whisper API.
+    In a typical web scenario, you receive an UploadFile from FastAPI and pass it to 'transcribe_audio'.
+    """
 
-    # Record audio from microphone
-    def record_audio(self, duration, fs):
-        print("Recording...")
-        audio = sd.rec(int(duration * fs), samplerate=fs, channels=1, dtype='int16')
-        sd.wait()
-        return audio
+    def __init__(self, openai_api_key: str):
+        self.client = OpenAI(api_key=openai_api_key)
 
-    # Prepare audio for transcription
-    def audio_to_buffer(self, audio, fs):
-        buffer = io.BytesIO()
-        write(buffer, fs, audio)
-        buffer.seek(0)
-        return buffer
-
-    # Transcribe audio using Whisper
-    def transcribe_audio(self, buffer):
+    def transcribe_audio(self, file_obj, filename="recording.wav", mime="audio/wav"):
         transcription = self.client.audio.transcriptions.create(
             model="whisper-1",
-            file=("audio.wav", buffer),
+            file=(filename, file_obj, mime),
             response_format="text"
         )
         return transcription
 
-    # Chat with GPT-4o
-    def chat_with_gpt(self, prompt):
-        completion = self.client.chat.completions.create(
-            model="gpt-4o",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return completion.choices[0].message.content
-
+# Example usage
 if __name__ == "__main__":
-    vc = VoiceChat()
-
-    # Recording parameters
-    duration = 4  # seconds
-    fs = 44100     # sample rate
-
-    # Record audio
-    audio = vc.record_audio(duration, fs)
-
-    # Process audio and transcribe
-    buffer = vc.audio_to_buffer(audio, fs)
-    transcription = vc.transcribe_audio(buffer)
-
-    print("You said:", transcription)
-
-    # GPT-4o chat response
-    response = vc.chat_with_gpt(transcription)
-    print("GPT-4o response:", response)
-
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise Exception("OPENAI_API_KEY not set in environment variables")
+    voice_manager = VoiceManager(api_key)
